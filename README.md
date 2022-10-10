@@ -19,7 +19,7 @@ Test Framework : JUnit<br>
   2. https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api<br>
   <br>
   - 로그인 서비스 아키텍처 및 흐름도- <br>
-  ![KaKao Login Architecture](https://user-images.githubusercontent.com/71485411/194915042-f3b97ff7-793c-4570-b2df-7ccb86cb1197.jpeg)<br>
+![KaKao Login Architecture](https://user-images.githubusercontent.com/71485411/194915042-f3b97ff7-793c-4570-b2df-7ccb86cb1197.jpeg)
   <br>
 ### 프론트엔드 역할
   - Kakao OAuth 서버로 로그인 요청 후, Authorization code 발급 받아, 백엔드에 전달<br>
