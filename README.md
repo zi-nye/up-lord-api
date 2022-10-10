@@ -21,14 +21,14 @@ Test Framework : JUnit<br>
       - 로그인 서비스 아키텍처 및 흐름도- <br>
       ![KaKao Login Architecture](https://user-images.githubusercontent.com/71485411/194915042-f3b97ff7-793c-4570-b2df-7ccb86cb1197.jpeg)<br>
       <br>
-      # * 프론트엔드 역할<br>
+      ##프론트엔드 역할<br>
         - Kakao OAuth 서버로 로그인 요청 후, Authorization code 발급 받아, 백엔드에 전달<br>
         - 백엔드에서 응답 받은 access token, refresh token 저장해두기<br>
         - 권한이 필요한 요청마다 Authorization 헤더에 access token 같이 보내주기<br>
         - access token이 만료되었다면, refresh token 보내서 갱신하기(프론트에서 요청 날릴 때 access token이 만료됨을 미리 판별하여 갱신 요청을 보낼 수 있음)<br>
         - refresh token 만료 기간이 7일 이내면, refresh token 재발급 요청<br>
       <br>
-      # * 백엔드 역할<br>
+      ##백엔드 역할<br>
         - Authorization code로 Kakao OAuth 서버에 토큰 요청<br>
           (로그인 할 때 이외에 OAuth 서버와 통신이 필요한 경우 발급 받은 토큰 저장을 청량서버에 저장)<br>
         - Access token으로 이름, 이메일, 프로필 URL 정보 요청<br>
