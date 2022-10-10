@@ -4,6 +4,7 @@ Framework : SpringBoot -version '2.7.4'<br>
 Source Compatibility : java -version '11'<br>
 Annotation Processor : 'lombok'<br>
 Test Framework : JUnit<br>
+<<<<<<< HEAD
 <br>
 
 # Project Progression
@@ -37,3 +38,5 @@ Test Framework : JUnit<br>
         - refresh token은 DB에 저장<br>
         - 유저 정보, access token, refresh token 프론트로 전달<br>
         - access token 만료시 refresh token 검증 후, 재발급<br>
+=======
+>>>>>>> 75bcbc9e35810467689cf607a2877e68818d5011
