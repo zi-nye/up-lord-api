@@ -19,7 +19,7 @@ DBMS : MySQL<br>
   2. https://mangkyu.tistory.com/56<br>
   3. https://mangkyu.tistory.com/55<br>
      <br>
-  - 카카오톡 로그인 API Docks - <br>
+- 카카오톡 로그인 API Docks<br>
   1. https://developers.kakao.com/docs/latest/ko/kakaologin/common#intro-kakaologin<br>
   2. https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api<br>
      <br>
