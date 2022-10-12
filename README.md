@@ -11,7 +11,7 @@ DBMS : MySQL<br>
 
 # **Project Progression**
 
-## 10.7) 카카오톡 로그인 서비스 구현 시작
+## 22/10/7) 카카오톡 로그인 서비스 구현 시작
 
 - OAuth2.0, JWT를 통한 로그인서비스 구현<br>
   OAuth2.0과 JWT에 대한 개념과 아키텍처 레퍼런스(References)<br>
