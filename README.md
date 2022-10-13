@@ -55,4 +55,4 @@ DBMS : MySQL<br>
   <br>
 
 1. Google Java Style Guide : https://google.github.io/styleguide/javaguide.html<br>
-   (한글 번역본) : https://myeonguni.tistory.com/1596<br>
+   (참고용 자바스타일 가이드 한글 번역) : https://myeonguni.tistory.com/1596<br>
