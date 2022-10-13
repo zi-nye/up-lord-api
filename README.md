@@ -45,3 +45,14 @@ DBMS : MySQL<br>
 - refresh token은 DB에 저장<br>
 - 유저 정보, access token, refresh token 프론트로 전달<br>
 - access token 만료시 refresh token 검증 후, 재발급<br>
+
+# **그 외 참조사항**
+
+## Code Convention
+
+- 기본적으로 구글스타일가이드의 자바가이드를 따르는 것을 원칙으로 한다.<br>
+- 그외의 더 고려할 사항이 있다면 이 부분에 레퍼런스링크를 걸어 추가하도록 한다.<br>
+  <br>
+
+1. Google Java Style Guide : https://google.github.io/styleguide/javaguide.html<br>
+   (한글 번역본) : https://myeonguni.tistory.com/1596<br>
