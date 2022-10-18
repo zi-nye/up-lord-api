@@ -56,3 +56,4 @@ DBMS : MySQL<br>
 
 1. Google Java Style Guide : https://google.github.io/styleguide/javaguide.html<br>
    (참고용 자바스타일 가이드 한글 번역) : https://myeonguni.tistory.com/1596<br>
+2. 자바 코딩컨벤션 캠퍼스핵데이 : https://naver.github.io/hackday-conventions-java/<br>
