@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  devtools:
+    livereload:
+      enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://up-lord.cqtukfcectyc.ap-northeast-1.rds.amazonaws.com:3306
+    username: admin
+    password: sKdCp8ATIttDWmLOpPem
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true

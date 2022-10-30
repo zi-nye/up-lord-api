@@ -1,0 +1,97 @@
+spring:
+  profiles:
+    active: local
+  devtools:
+    livereload:
+      enabled: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  session:
+    store-type: none
+  messages:
+    encoding: UTF-8
+  output:
+    ansi:
+      enabled: detect
+  datasource:
+    hikari:
+      max-lifetime: 895000
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: <your id>
+            client-secret: <your secret>
+            redirect-uri: <your url>/login/oauth2/code/
+            authorization-grant-type: authorization_code
+            client-authentication-method: POST
+            client-name: Kakao
+            scope:
+              - profile
+              - account_email
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+server:
+  servlet:
+    session:
+      persistent: true
+      timeout: 0
+    context-path: /
+    encoding:
+      charset: UTF-8
+      force: true
+  shutdown: graceful
+  forward-headers-strategy: native
+  error:
+    include-message: always
+    include-stacktrace: never
+    include-binding-errors: never
+    include-exception: false
+    whitelabel:
+      enabled: false
+  tomcat:
+    additional-tld-skip-patterns: "*.jar"
+
+auth:
+  token:
+    secret: R0iNN6wSxunNsnYS4fYiHKYz745AyTmwI2riqhEsCwk=
+    issuer: lims
+    refresh-token:
+      expire:
+        hours: 2
+    access-token:
+      expire:
+        minutes: 30
+
+mybatis:
+  mapper-locations: mapper/**/*.xml
+  type-aliases-package: lims.api.**.vo, lims.api.**.domain
+  configuration:
+    map-underscore-to-camel-case: true
+    jdbc-type-for-null: varchar
+
+logging:
+  charset:
+    console: UTF-8
+    file: UTF-8
+  level:
+    root: info
+    lims.api: debug
+    jdbc.resultsettable: debug
+    jdbc.sqltiming: info
+    jdbc: off
+    jdbc.audit: off
+    jdbc.sqlonly: off
+    jdbc.resultset: off
+    jdbc.connection: info
+  logback:
+    rollingpolicy:
+      clean-history-on-start: false
+      max-file-size: 10MB
