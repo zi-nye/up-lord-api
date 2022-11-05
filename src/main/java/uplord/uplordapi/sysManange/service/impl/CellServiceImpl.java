@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CellServiceImpl implements CellService {
 
-    private CellDAO dao;
+    private final CellDAO dao;
 
     @Override
     public List<CellVO> findList(CellVO param) {

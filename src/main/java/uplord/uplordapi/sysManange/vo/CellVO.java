@@ -22,4 +22,6 @@ public class CellVO {
     private String updatedUid;
     private String updatedAt;
     private String updatedIp;
+
+    private String cellLeaderNm;
 }

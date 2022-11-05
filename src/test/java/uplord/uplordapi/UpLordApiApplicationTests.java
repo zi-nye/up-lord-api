@@ -10,4 +10,17 @@ class UpLordApiApplicationTests {
     void contextLoads() {
     }
 
+
+
+    @Test
+    void 셀목록_조회(){
+        //given
+
+
+        //when
+
+        //then
+
+    }
+
 }
