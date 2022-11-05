@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="uplord.uplordapi.cell.dao.CellDAO">
-    <select id="findList" parameterType="CellVO" resultType="CellVO">
+<mapper namespace="uplord.uplordapi.sysManange.cell.dao.CellDAO">
+    <select id="findList" parameterType="uplord.uplordapi.sysManange.vo.CellVO" resultType="uplord.uplordapi.sysManange.vo.CellVO">
         SELECT CELL_CD , CELL_READER_UID FROM CELL
     </select>
 </mapper>

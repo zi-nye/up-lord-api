@@ -40,39 +40,9 @@ server:
   tomcat:
     additional-tld-skip-patterns: "*.jar"
 
-auth:
-  token:
-    secret: R0iNN6wSxunNsnYS4fYiHKYz745AyTmwI2riqhEsCwk=
-    issuer: lims
-    refresh-token:
-      expire:
-        hours: 2
-    access-token:
-      expire:
-        minutes: 30
-
 mybatis:
   mapper-locations: mapper/**/*.xml
   type-aliases-package: upload.uplordapi.**.vo
   configuration:
     map-underscore-to-camel-case: true
     jdbc-type-for-null: varchar
-
-logging:
-  charset:
-    console: UTF-8
-    file: UTF-8
-  level:
-    root: info
-    lims.api: debug
-    jdbc.resultsettable: debug
-    jdbc.sqltiming: info
-    jdbc: off
-    jdbc.audit: off
-    jdbc.sqlonly: off
-    jdbc.resultset: off
-    jdbc.connection: info
-  logback:
-    rollingpolicy:
-      clean-history-on-start: false
-      max-file-size: 10MB
