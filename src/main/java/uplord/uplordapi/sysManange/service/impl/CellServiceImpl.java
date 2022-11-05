@@ -16,8 +16,6 @@ public class CellServiceImpl implements CellService {
 
     @Override
     public List<CellVO> findList(CellVO param) {
-        List<CellVO> clist = dao.findList(param);
-        System.out.println(clist.get(0).getCellCd());
         return dao.findList(param);
     }
 }
