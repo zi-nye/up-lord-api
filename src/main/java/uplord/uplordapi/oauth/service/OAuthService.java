@@ -1,4 +1,4 @@
-package uplord.uplordapi.service;
+package uplord.uplordapi.oauth.service;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;

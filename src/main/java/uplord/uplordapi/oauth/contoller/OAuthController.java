@@ -1,15 +1,12 @@
-package uplord.uplordapi.contoller;
+package uplord.uplordapi.oauth.contoller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import uplord.uplordapi.service.OAuthService;
+import org.springframework.web.bind.annotation.*;
+import uplord.uplordapi.oauth.service.OAuthService;
 
 @RestController
 @RequiredArgsConstructor
-//@RequestMapping("/oauth")
+//@RequestMapping("/login")
 public class OAuthController {
 
     private OAuthService service;

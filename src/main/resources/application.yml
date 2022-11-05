@@ -14,30 +14,11 @@ spring:
     encoding: UTF-8
   output:
     ansi:
-      enabled: detect
   datasource:
-    hikari:
-      max-lifetime: 895000
-  security:
-    oauth2:
-      client:
-        registration:
-          kakao:
-            client-id: <your id>
-            client-secret: <your secret>
-            redirect-uri: <your url>/login/oauth2/code/
-            authorization-grant-type: authorization_code
-            client-authentication-method: POST
-            client-name: Kakao
-            scope:
-              - profile
-              - account_email
-        provider:
-          kakao:
-            authorization-uri: https://kauth.kakao.com/oauth/authorize
-            token-uri: https://kauth.kakao.com/oauth/token
-            user-info-uri: https://kapi.kakao.com/v2/user/me
-            user-name-attribute: id
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://up-lord.cqtukfcectyc.ap-northeast-1.rds.amazonaws.com:3306
+    username: admin
+    password: sKdCp8ATIttDWmLOpPem
 server:
   servlet:
     session:
@@ -72,7 +53,7 @@ auth:
 
 mybatis:
   mapper-locations: mapper/**/*.xml
-  type-aliases-package: lims.api.**.vo, lims.api.**.domain
+  type-aliases-package: upload.uplordapi.**.vo
   configuration:
     map-underscore-to-camel-case: true
     jdbc-type-for-null: varchar
