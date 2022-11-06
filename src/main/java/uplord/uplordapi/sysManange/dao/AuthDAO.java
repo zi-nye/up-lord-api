@@ -2,16 +2,17 @@ package uplord.uplordapi.sysManange.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import uplord.uplordapi.sysManange.vo.CellVO;
+import uplord.uplordapi.sysManange.vo.AuthVO;
 
 import java.util.List;
 
 @Mapper
 @Repository
-public interface CellDAO {
-    List<CellVO> findList(CellVO param);
+public interface AuthDAO {
 
-    int create(CellVO param);
+    List<AuthVO> findList(AuthVO param);
 
-    int update(CellVO param);
+    int update(AuthVO param);
+
+    int create(AuthVO param);
 }

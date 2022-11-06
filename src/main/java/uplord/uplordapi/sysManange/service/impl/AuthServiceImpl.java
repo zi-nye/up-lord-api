@@ -4,37 +4,35 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uplord.uplordapi.common.exception.NoCreatedDataException;
 import uplord.uplordapi.common.exception.NoUpdatedDataException;
-import uplord.uplordapi.sysManange.dao.CellDAO;
-import uplord.uplordapi.sysManange.service.CellService;
-import uplord.uplordapi.sysManange.vo.CellVO;
+import uplord.uplordapi.sysManange.dao.AuthDAO;
+import uplord.uplordapi.sysManange.service.AuthService;
+import uplord.uplordapi.sysManange.vo.AuthVO;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CellServiceImpl implements CellService {
+public class AuthServiceImpl implements AuthService {
 
-    private final CellDAO dao;
+    private final AuthDAO dao;
 
     @Override
-    public List<CellVO> findList(CellVO param) {
+    public List<AuthVO> findList(AuthVO param) {
         return dao.findList(param);
     }
 
     @Override
-    public void update(CellVO param) {
-        int result = dao.update(param);
+    public void create(AuthVO param) {
+        int result = dao.create(param);
 
         if (result == 0) {
             throw new NoCreatedDataException();
         }
-
-
     }
 
     @Override
-    public void create(CellVO param) {
-        int result = dao.create(param);
+    public void update(AuthVO param) {
+        int result = dao.update(param);
 
         if (result == 0) {
             throw new NoUpdatedDataException();

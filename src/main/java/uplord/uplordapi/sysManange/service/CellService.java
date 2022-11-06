@@ -5,4 +5,8 @@ import java.util.List;
 
 public interface CellService {
     List<CellVO> findList(CellVO param);
+
+    void update(CellVO param);
+
+    void create(CellVO param);
 }
