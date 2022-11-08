@@ -2,13 +2,30 @@ package uplord.uplordapi.oauth.service;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
+@Service
+@RequiredArgsConstructor
 public class OAuthService {
-    public String getKakaoAccessToken(String code) {
+
+    @Value("${kakao.rest-api-key}")
+    private String KAKAO_REST_API_KEY;
+
+    @Value("${kakao.redirect-url")
+    private String KAKAO_REDIRECT_URL;
+
+
+    public String getKakaoAccessToken(String code) { // TODO 다른 곳으로 빼기
+
         String access_Token="";
         String refresh_Token ="";
         String reqURL = "https://kauth.kakao.com/oauth/token";
@@ -25,8 +42,8 @@ public class OAuthService {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=d8ffee0aed78643ac7c0644a387c1e2e"); // TODO REST_API_KEY 입력
-            sb.append("&redirect_uri=http://localhost:3000/oauth"); // TODO 인가코드 받은 redirect_uri 입력
+            sb.append("&client_id=").append(KAKAO_REST_API_KEY); // TODO REST_API_KEY 입력
+            sb.append("&redirect_uri=").append(KAKAO_REDIRECT_URL); // TODO 인가코드 받은 redirect_uri 입력
             sb.append("&code=" + code);
             bw.write(sb.toString());
             bw.flush();
