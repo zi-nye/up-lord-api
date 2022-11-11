@@ -2,12 +2,87 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uplord.uplordapi.sysManange.dao.CommonCodeDAO">
     <select id="findList" parameterType="CommonCodeVO" resultType="CommonCodeVO">
+        SELECT
+               HIR_CD
+             , CD_DIV_SU
+             , HIR_CD_NM
+             , HIR_CD_ORD
+             , USE_YN
+             , HIR_CD_DESC
+             , CREATED_UID
+             , UPDATED_UID
+        FROM COM_HIR_CODE
+        WHERE 1=1
+        <if test="hirCdNm != null and hirCdNm != ''">
+            AND HIR_CD_NM LIKE '%' || TRIM(UPPER(#{hirCdNm})) || '%'
+        </if>
+        <if test="useYn != null and useYn != ''">
+            AND USE_YN = #{useYn}
+        </if>
+        ORDER BY CD_DIV_SU, HIR_CD_ORD
      </select>
 
-    <insert id="create" parameterType="CommonCodeVO" >
+    <select id="findDetailCode" resultType="CommonDetailCodeVO" parameterType="CommonDetailCodeVO">
+        SELECT HIR_CD
+             , DTL_CD
+             , DTL_CD_NM
+             , DTL_CD_EN
+             , DTL_CD_ABBR
+             , DTL_CD_ORD
+             , USE_YN
+             , DTL_CD_RMK
+             , CREATED_UID
+             , UPDATED_UID
+        FROM COM_DTL_CODE
+        WHERE HIR_CD = #{hirCd}
+        <if test="dtlCdNm != null and dtlCdNm != ''">
+            AND UPPER(DTL_CD_NM) LIKE ('%' || TRIM(UPPER(#{dtlCdNm})) || '%')
+        </if>
+        <if test="useYn != null and useYn != ''">
+            AND USE_YN = #{useYn}
+        </if>
+        ORDER BY DTL_CD_ORD
+    </select>
 
+    <insert id="hirCodeCreate" parameterType="CommonCodeVO">
+        <selectKey resultType="string" keyProperty="hirCd" order="BEFORE">
+            SELECT 'S09' FROM COM_HIR_CODE
+        </selectKey>
+        INSERT INTO COM_HIR_CODE
+        ()
+        VALUES()
     </insert>
 
-    <update id="update" parameterType="CommonCodeVO" >
+
+    <update id="hirCodeUpdate" parameterType="CommonCodeVO">
+        UPDATE COM_HIR_CODE SET
+             HIR_CD_NM= #{hirCdNm},
+             HIR_CD_DESC = #{hirCdDesc},
+             USE_YN = #{useYn},
+             HIR_CD_ORD = #{hirCdOrd}
+        WHERE HIR_CD = #{hirCd}
+    </update>
+
+    <insert id="detailCodeCreate" parameterType="CommonDetailCodeVO">
+        <selectKey resultType="string" keyProperty="dtlCd" order="BEFORE">
+            SELECT 'S01001'
+            FROM COM_DTL_CODE
+        </selectKey>
+        INSERT INTO COM_DTL_CODE
+        ()
+        VALUES
+        ()
+    </insert>
+
+    <update id="detailCodeUpdate" parameterType="CommonDetailCodeVO">
+        UPDATE COM_DTL_CODE SET
+            DTL_CD_NM = #{dtlCdNm},
+            DTL_CD_EN = #{dtlCdEn},
+            DTL_CD_ABBR = #{dtlCdAbbr},
+            DTL_CD_RMK = #{dtlCdRmk},
+            DTL_CD_ORD = #{dtlCdOrd},
+            USE_YN = #{useYn}
+        WHERE HIR_CD = #{hirCd}
+          AND DTL_CD = #{dtlCd}
     </update>
 </mapper>

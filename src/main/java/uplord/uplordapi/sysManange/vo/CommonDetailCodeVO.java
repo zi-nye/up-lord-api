@@ -5,13 +5,15 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CommonCodeVO {
+public class CommonDetailCodeVO {
     private String hirCd;
-    private String cdDivSu;
-    private String hirCdNm;
-    private String hirCdOrd;
-    private String hirCdDesc;
+    private String dtlCd;
+    private String dtlCdNm;
+    private String dtlCdEn;
+    private String dtlCdAbbr;
+    private String dtlCdOrd;
     private String useYn;
+    private String dtlCdRmk;
     private String createdUid;
     private String createdAt;
     private String createdIp;
