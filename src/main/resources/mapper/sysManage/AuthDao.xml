@@ -1,13 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uplord.uplordapi.sysManange.dao.AuthDAO">
-    <select id="findList" parameterType="AuthVO" resultType="AuthVO">
+    <select id="findAuthList" parameterType="AuthVO" resultType="AuthVO">
+        SELECT
+            AUTH_CD
+             , AUTH_NM
+             , AUTH_DESC
+             , ORD
+             , USE_YN
+             , CREATED_UID
+             , UPDATED_UID
+        FROM AUTH
+        <where>
+            1=1
+            <if test="athNm != ''">
+                AND ATH_NM LIKE '%' || #{athNm} || '%'
+            </if>
+            <if test="useYn != ''">
+                AND USE_YN = #{useYn}
+            </if>
+        </where>
+        ORDER BY ORD, ATH_CD
      </select>
 
     <insert id="create" parameterType="AuthVO" >
-
+        <selectKey resultType="string" keyProperty="authCd" order="BEFORE">
+            SELECT CONCAT('A',LPAD(IFNULL(MAX(SUBSTR(AUTH_CD, -4))+1,1),4,0)) FROM AUTH
+        </selectKey>
+        INSERT INTO
+        AUTH (
+            AUTH_CD
+            , AUTH_NM
+            , AUTH_DESC
+            , ORD
+            , USE_YN
+            , CREATED_UID
+            , CREATED_AT
+            , CREATED_IP
+            , UPDATED_UID
+            , UPDATED_AT
+            , UPDATED_IP
+            )
+        VALUES (
+            #{authCd}
+            , #{authNm}
+            , #{authDesc}
+            , #{ord}
+            , #{uesYn}
+            , #{createdUid}
+            , #{createdAt}
+            , #{createdIp}
+            , #{updatedUid}
+            , #{updatedAt}
+            , #{updatedIp}
+        )
     </insert>
 
     <update id="update" parameterType="AuthVO" >
+        UPDATE AUTH
+        SET AUTH_NM  = #{authNm}
+            ,AUTH_DESC = #{authDesc}
+            ,ORD     = #{ord}
+            ,USE_YN  = #{useYn}
+            ,UPDATED_UID = #{updatedUid}
+            ,UPDATED_AT = #{updatedAt}
+            ,UPDATED_IP = #{updatedIp}
+        WHERE AUTH_CD = #{authCd}
     </update>
+
+    <insert id="createAthGp" parameterType="AuthVO">
+        INSERT INTO AUTH_GROUP
+            (AUTH_CD
+            , MENU_CD
+            , USE_YN
+            , CREATED_UID
+            , CREATED_AT
+            , CREATED_IP
+            , UPDATED_UID
+            , UPDATED_AT
+            , UPDATED_IP
+            )
+        VALUES (
+                #{authCd}
+                , #{menuCd}
+                , 'Y'
+                , #{createdUid}
+                , #{createdAt}
+                , #{createdIp}
+                , #{updatedUid}
+                , #{updatedAt}
+                , #{updatedIp}
+                )
+    </insert>
+
+    <delete id="deleteAthGp" parameterType="AuthVO">
+        DELETE FROM AUTH_GROUP
+        WHERE  AUTH_CD = #{athCd}
+          AND MENU_CD = #{menuCd}
+    </delete>
+
+    <select id="findNotAthGpList" parameterType="AuthVO" resultType="AuthVO">
+        SELECT
+            M1.MENU_CD
+             , M1.HIR_MENU_CD
+             , M1.MENU_NM
+             , M2.MENU_NM AS HIR_MENU_NM
+             , M1.MENU_URL
+             , M1.MENU_ORD
+             , M1.MENU_DESC
+             , M1.USE_YN
+             , #{authCd} AS AUTH_CD
+        FROM MENU M1,
+             MENU M2
+        WHERE M1.HIR_MENU_CD = M2.MENU_CD
+          AND M2.HIR_MENU_CD != 'M0OO1'
+          AND M1.MENU_CD NOT IN (SELECT MN.MENU_CD
+                                 FROM AUTH_GROUP AG,
+                                      MENU MN
+                                 WHERE AG.MENU_CD = MN.MENU_CD
+                                   AND AUTH_CD = #{authCd}
+                                 ORDER BY M1.MENU_CD)
+    </select>
+
+    <select id="findAthGpList" parameterType="AuthVO" resultType="AuthVO">
+        SELECT
+            M1.MENU_CD
+             , M1.HIR_MENU_CD
+             , M1.MENU_NM
+             , M2.MENU_NM AS HIR_MENU_NM
+             , M1.MENU_URL
+             , M1.MENU_ORD
+             , M1.MENU_DESC
+             , M1.USE_YN
+             , #{authCd} AS AUTH_CD
+        FROM MENU M1,
+             MENU M2
+        WHERE M1.HIR_MENU_CD = M2.MENU_CD
+          AND M2.HIR_MENU_CD != 'M0OO1'
+          AND M1.MENU_CD IN (SELECT MN.MENU_CD
+                                 FROM AUTH_GROUP AG,
+                                      MENU MN
+                                 WHERE AG.MENU_CD = MN.MENU_CD
+                                   AND AUTH_CD = #{authCd}
+                                 ORDER BY M1.MENU_CD)
+    </select>
 </mapper>

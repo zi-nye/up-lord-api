@@ -10,9 +10,17 @@ import java.util.List;
 @Repository
 public interface AuthDAO {
 
-    List<AuthVO> findList(AuthVO param);
+    List<AuthVO> findAuthList(AuthVO param);
 
     int update(AuthVO param);
 
     int create(AuthVO param);
+
+    int deleteAthGp(AuthVO param);
+
+    int createAthGp(AuthVO param);
+
+    List<AuthVO> findNotAthGpList(AuthVO param);
+
+    List<AuthVO> findAthGpList(AuthVO param);
 }
