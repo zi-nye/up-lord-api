@@ -17,7 +17,7 @@ public class OAuthController {
     @PostMapping("/kakao")
     public String getAuthorizationCode(@RequestBody Map<String, String> body){
         // TODO 서비스에서 하도록 할 것.
-            // 인증코드 가지고 토큰 받기
+            // 인증코드 가지고 토큰 받기 😃
             // 토큰 받은 것으로 유저 조회하기
             // 카카오톡 유저 조회 API 조회
             // 조회한 데이터를 참고하여 토큰 발급하기
@@ -31,8 +31,8 @@ public class OAuthController {
         String authCode = body.get("code");
 
         String access_Token = service.getKakaoAccessToken(authCode);
-        service.createKakaoUser(access_Token);
+        String token = service.createKakaoUser(access_Token);
 
-        return "test";
+        return token;
     }
 }
