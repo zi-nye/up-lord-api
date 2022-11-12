@@ -1,4 +1,4 @@
-package uplord.uplordapi.sysManange.vo;
+package uplord.uplordapi.sysManange.menu.vo;
 
 public class MenuVo {
 	private String menuCd;

@@ -1,10 +1,10 @@
-package uplord.uplordapi.sysManange.service.impl;
+package uplord.uplordapi.sysManange.menu.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import uplord.uplordapi.sysManange.dao.MenuDAO;
-import uplord.uplordapi.sysManange.service.MenuService;
-import uplord.uplordapi.sysManange.vo.MenuVo;
+import uplord.uplordapi.sysManange.menu.dao.MenuDAO;
+import uplord.uplordapi.sysManange.menu.service.MenuService;
+import uplord.uplordapi.sysManange.menu.vo.MenuVo;
 
 import java.util.List;
 
