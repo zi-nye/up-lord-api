@@ -1,19 +1,41 @@
 package uplord.uplordapi.oauth.service;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import uplord.uplordapi.common.JwtTokenProvider;
+import uplord.uplordapi.oauth.dao.OauthDAO;
+import uplord.uplordapi.oauth.vo.UserVO;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+@Service
+@RequiredArgsConstructor
 public class OAuthService {
-    public String getKakaoAccessToken(String code) {
-        String access_Token="";
-        String refresh_Token ="";
+
+    @Value("${kakao.rest-api-key}")
+    private String KAKAO_REST_API_KEY;
+
+    @Value("${kakao.redirect-url}")
+    private String KAKAO_REDIRECT_URL;
+
+    private final OauthDAO dao;
+
+    private final JwtTokenProvider jwtTokenProvider;
+
+
+    public String getKakaoAccessToken(String code) { // TODO 다른 곳으로 빼기
+
+        String access_Token = "";
+        String refresh_Token = "";
         String reqURL = "https://kauth.kakao.com/oauth/token";
 
-        try{
+        try {
             URL url = new URL(reqURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -21,13 +43,16 @@ public class OAuthService {
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
 
+            System.out.println(KAKAO_REST_API_KEY);
+            System.out.println(KAKAO_REDIRECT_URL);
+
             //POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=d8ffee0aed78643ac7c0644a387c1e2e"); // TODO REST_API_KEY 입력
-            sb.append("&redirect_uri=http://localhost:3000/oauth"); // TODO 인가코드 받은 redirect_uri 입력
-            sb.append("&code=" + code);
+            sb.append("&client_id=").append(KAKAO_REST_API_KEY); // TODO REST_API_KEY 입력
+            sb.append("&redirect_uri=").append(KAKAO_REDIRECT_URL); // TODO 인가코드 받은 redirect_uri 입력
+            sb.append("&code=").append(code);
             bw.write(sb.toString());
             bw.flush();
 
@@ -56,14 +81,14 @@ public class OAuthService {
 
             br.close();
             bw.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         return access_Token;
     }
 
-    public void createKakaoUser(String token) {
+    public String createKakaoUser(String token) {
 
         String reqURL = "https://kapi.kakao.com/v2/user/me";
 
@@ -90,24 +115,52 @@ public class OAuthService {
             }
             System.out.println("response body : " + result);
 
+            br.close();
+
             //Gson 라이브러리로 JSON파싱
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
 
-            int id = element.getAsJsonObject().get("id").getAsInt();
-            boolean hasEmail = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email").getAsBoolean();
+            String snsId = element.getAsJsonObject().get("id").getAsString();
+
+            JsonObject kakaoAccount = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+
+            String name = kakaoAccount.get("profile").getAsJsonObject().get("nickname").getAsString();
+
+            boolean hasEmail = kakaoAccount.get("has_email").getAsBoolean();
             String email = "";
-            if(hasEmail){
-                email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
+            if (hasEmail) {
+                email = kakaoAccount.get("email").getAsString();
             }
 
-            System.out.println("id : " + id);
-            System.out.println("email : " + email);
+            boolean hasBirthday = kakaoAccount.get("has_birthday").getAsBoolean();
+            String birthday = "";
+            if (hasBirthday) {
+                birthday = kakaoAccount.get("birthday").getAsString();
+            }
 
-            br.close();
+            // 등록된 유저가 아니라면, 신규 삽입
+            if (dao.findUserBySnsId(snsId) == null) {
+                UserVO user = UserVO.builder()
+                        .snsType("KAKAO")
+                        .snsId(snsId)
+                        .userEmail(email)
+                        .userName(name)
+//                    .userBirth(birthday)
+                        .build();
+
+                dao.createUser(user);
+            }
+
+            UserVO user = dao.findUserBySnsId(snsId);
+
+            // TODO 토큰 발급
+            return jwtTokenProvider.createToken(user.getUsername());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 }
