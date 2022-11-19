@@ -14,7 +14,7 @@
         FROM COM_HIR_CODE
         WHERE 1=1
         <if test="hirCdNm != null and hirCdNm != ''">
-            AND HIR_CD_NM LIKE '%' || TRIM(UPPER(#{hirCdNm})) || '%'
+            AND HIR_CD_NM LIKE CONCAT( '%' , TRIM(UPPER(#{hirCdNm})), '%')
         </if>
         <if test="useYn != null and useYn != ''">
             AND USE_YN = #{useYn}
@@ -36,7 +36,7 @@
         FROM COM_DTL_CODE
         WHERE HIR_CD = #{hirCd}
         <if test="dtlCdNm != null and dtlCdNm != ''">
-            AND UPPER(DTL_CD_NM) LIKE ('%' || TRIM(UPPER(#{dtlCdNm})) || '%')
+            AND UPPER(DTL_CD_NM) CONCAT( '%' , TRIM(UPPER(#{dtlCdNm})), '%')
         </if>
         <if test="useYn != null and useYn != ''">
             AND USE_YN = #{useYn}
@@ -46,11 +46,38 @@
 
     <insert id="hirCodeCreate" parameterType="CommonCodeDTO">
         <selectKey resultType="string" keyProperty="hirCd" order="BEFORE">
-            SELECT 'S09' FROM COM_HIR_CODE
+            SELECT CONCAT(#{cdDivSu}, LPAD(IFNULL(MAX(SUBSTR(HIR_CD, -2)), 0)+1, 2, '0'))
+            FROM COM_HIR_CODE WHERE CD_DIV_SU = #{cdDivSu}
         </selectKey>
         INSERT INTO COM_HIR_CODE
-        ()
-        VALUES()
+        (
+        HIR_CD
+       , CD_DIV_SU
+       , HIR_CD_NM
+       , HIR_CD_ORD
+       , USE_YN
+       , HIR_CD_DESC
+       , CREATED_UID
+       , CREATED_AT
+       , CREATED_IP
+       , UPDATED_UID
+       , UPDATED_AT
+       , UPDATED_IP
+        )
+        VALUES(
+          #{hirCd}
+        , #{cdDivSu}
+        , #{hirCdNm}
+        , #{hirCdOrd}
+        , #{useYn}
+        , #{hirCdDesc}
+        , #{createdUid}
+        , #{createdAt}
+        , #{createdIp}
+        , #{updatedUid}
+        , #{updatedAt}
+        , #{updatedIp}
+        )
     </insert>
 
 
@@ -59,19 +86,54 @@
              HIR_CD_NM= #{hirCdNm},
              HIR_CD_DESC = #{hirCdDesc},
              USE_YN = #{useYn},
-             HIR_CD_ORD = #{hirCdOrd}
+             HIR_CD_ORD = #{hirCdOrd},
+             UPDATED_UID = #{updatedUid},
+             UPDATED_AT = #{updatedAt},
+             UPDATED_IP =  #{updatedIp}
         WHERE HIR_CD = #{hirCd}
     </update>
 
     <insert id="detailCodeCreate" parameterType="CommonDetailCodeDTO">
         <selectKey resultType="string" keyProperty="dtlCd" order="BEFORE">
-            SELECT 'S01001'
+            SELECT CONCAT(#{hirCd}, LPAD(IFNULL((SELECT MAX(SUBSTR(DTL_CD, -3))
             FROM COM_DTL_CODE
+            WHERE HIR_CD = #{hirCd}),0)+1, 3, '0'))
+            FROM DUAL
         </selectKey>
         INSERT INTO COM_DTL_CODE
-        ()
+        (
+        HIR_CD
+        ,DTL_CD
+        ,DTL_CD_NM
+        ,DTL_CD_EN
+        ,DTL_CD_ABBR
+        ,DTL_CD_ORD
+        ,USE_YN
+        ,DTL_CD_RMK
+        ,CREATED_UID
+        ,CREATED_AT
+        ,CREATED_IP
+        ,UPDATED_UID
+        ,UPDATED_AT
+        ,UPDATED_IP
+        )
         VALUES
-        ()
+        (
+         #{hirCd}
+        ,#{dtlCd}
+        ,#{dtlCdNm}
+        ,#{dtlCdEn}
+        ,#{dtlCdAbbr}
+        ,#{dtlCdOrd}
+        ,#{useYn}
+        ,#{dtlCdRmk}
+        ,#{createdUid}
+        ,#{createdAt}
+        ,#{createdIp}
+        ,#{updatedUid}
+        ,#{updatedAt}
+        ,#{updatedIp}
+        )
     </insert>
 
     <update id="detailCodeUpdate" parameterType="CommonDetailCodeDTO">
@@ -81,7 +143,10 @@
             DTL_CD_ABBR = #{dtlCdAbbr},
             DTL_CD_RMK = #{dtlCdRmk},
             DTL_CD_ORD = #{dtlCdOrd},
-            USE_YN = #{useYn}
+            USE_YN = #{useYn},
+            UPDATED_UID = #{updatedUid},
+            UPDATED_AT = #{updatedAt},
+            UPDATED_IP =  #{updatedIp}
         WHERE HIR_CD = #{hirCd}
           AND DTL_CD = #{dtlCd}
     </update>

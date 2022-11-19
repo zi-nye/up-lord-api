@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uplord.uplordapi.sysManange.dao.MenuDAO">
     <select id="findList" parameterType="MenuDTO" resultType="MenuDTO">
-
+        SELECT
+            DISTINCT B.HIR_MENU_CD AS c_HIR_MENU_CD
+               , A.MENU_NM AS p_MENU_NM
+               , B.MENU_CD AS c_MENU_CD
+               , B.MENU_NM AS c_MENU_NM
+               , B.MENU_URL AS c_MENU_URL
+               , B.MENU_ORD AS c_MENU_ORD
+               , B.MENU_DESC AS c_MENU_DESC
+               , B.USE_YN
+        FROM MENU A
+        JOIN MENU B ON A.MENU_CD = B.HIR_MENU_CD
+        WHERE A.MENU_CD != 'M0000'
+        ORDER BY B.MENU_CD, B.MENU_ORD
      </select>
 </mapper>
