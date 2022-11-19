@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uplord.uplordapi.sysManange.dao.CommonCodeDAO">
-    <select id="findList" parameterType="CommonCodeVO" resultType="CommonCodeVO">
+    <select id="findHirCodeList" parameterType="CommonCodeDTO" resultType="CommonCodeDTO">
         SELECT
                HIR_CD
              , CD_DIV_SU
@@ -22,7 +22,7 @@
         ORDER BY CD_DIV_SU, HIR_CD_ORD
      </select>
 
-    <select id="findDetailCode" resultType="CommonDetailCodeVO" parameterType="CommonDetailCodeVO">
+    <select id="findDetailCodeList" resultType="CommonDetailCodeDTO" parameterType="CommonDetailCodeDTO">
         SELECT HIR_CD
              , DTL_CD
              , DTL_CD_NM
@@ -44,7 +44,7 @@
         ORDER BY DTL_CD_ORD
     </select>
 
-    <insert id="hirCodeCreate" parameterType="CommonCodeVO">
+    <insert id="hirCodeCreate" parameterType="CommonCodeDTO">
         <selectKey resultType="string" keyProperty="hirCd" order="BEFORE">
             SELECT 'S09' FROM COM_HIR_CODE
         </selectKey>
@@ -54,7 +54,7 @@
     </insert>
 
 
-    <update id="hirCodeUpdate" parameterType="CommonCodeVO">
+    <update id="hirCodeUpdate" parameterType="CommonCodeDTO">
         UPDATE COM_HIR_CODE SET
              HIR_CD_NM= #{hirCdNm},
              HIR_CD_DESC = #{hirCdDesc},
@@ -63,7 +63,7 @@
         WHERE HIR_CD = #{hirCd}
     </update>
 
-    <insert id="detailCodeCreate" parameterType="CommonDetailCodeVO">
+    <insert id="detailCodeCreate" parameterType="CommonDetailCodeDTO">
         <selectKey resultType="string" keyProperty="dtlCd" order="BEFORE">
             SELECT 'S01001'
             FROM COM_DTL_CODE
@@ -74,7 +74,7 @@
         ()
     </insert>
 
-    <update id="detailCodeUpdate" parameterType="CommonDetailCodeVO">
+    <update id="detailCodeUpdate" parameterType="CommonDetailCodeDTO">
         UPDATE COM_DTL_CODE SET
             DTL_CD_NM = #{dtlCdNm},
             DTL_CD_EN = #{dtlCdEn},
@@ -85,4 +85,6 @@
         WHERE HIR_CD = #{hirCd}
           AND DTL_CD = #{dtlCd}
     </update>
+
+
 </mapper>

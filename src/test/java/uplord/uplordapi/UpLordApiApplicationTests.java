@@ -3,9 +3,8 @@ package uplord.uplordapi;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import uplord.uplordapi.sysManange.service.CellService;
 import uplord.uplordapi.sysManange.service.impl.CellServiceImpl;
-import uplord.uplordapi.sysManange.vo.CellVO;
+import uplord.uplordapi.sysManange.dto.CellDTO;
 
 import java.util.List;
 
@@ -24,10 +23,10 @@ class UpLordApiApplicationTests {
         //given
 
         //when
-        List<CellVO> list = service.findList(new CellVO());
+        List<CellDTO> list = service.findList(new CellDTO());
 
         //then
-        for (CellVO cvo : list ) {
+        for (CellDTO cvo : list ) {
             System.out.println(cvo.getCellLeaderNm());
             System.out.println(cvo.getCellNm());
             System.out.println(cvo.getCellGroupPlace());

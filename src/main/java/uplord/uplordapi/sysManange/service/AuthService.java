@@ -1,21 +1,21 @@
 package uplord.uplordapi.sysManange.service;
 
-import uplord.uplordapi.sysManange.vo.AuthVO;
+import uplord.uplordapi.sysManange.dto.AuthDTO;
 
 import java.util.List;
 
 public interface AuthService {
-    List<AuthVO> findAllAthList(AuthVO param);
+    List<AuthDTO> findAllAthList(AuthDTO param);
 
-    void create(AuthVO param);
+    void create(AuthDTO param);
 
-    void update(AuthVO param);
+    void update(AuthDTO param);
 
-    void createAthGp(AuthVO param);
+    void createAthGp(AuthDTO param);
 
-    void deleteAthGp(AuthVO param);
+    void deleteAthGp(AuthDTO param);
 
-    List<AuthVO> findNotAthGpList(AuthVO param);
+    List<AuthDTO> findNotAthGpList(AuthDTO param);
 
-    List<AuthVO> findAthGpList(AuthVO param);
+    List<AuthDTO> findAthGpList(AuthDTO param);
 }

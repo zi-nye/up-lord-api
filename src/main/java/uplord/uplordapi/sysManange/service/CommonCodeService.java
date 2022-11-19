@@ -1,13 +1,20 @@
 package uplord.uplordapi.sysManange.service;
 
-import uplord.uplordapi.sysManange.vo.CommonCodeVO;
+import uplord.uplordapi.sysManange.dto.CommonCodeDTO;
+import uplord.uplordapi.sysManange.dto.CommonDetailCodeDTO;
 
 import java.util.List;
 
 public interface CommonCodeService {
-    List<CommonCodeVO> findList(CommonCodeVO param);
+    List<CommonCodeDTO> findHirCodeList(CommonCodeDTO param);
 
-    void create(CommonCodeVO param);
+    List<CommonDetailCodeDTO> findDetailCodeList(CommonDetailCodeDTO param);
 
-    void update(CommonCodeVO param);
+    void hirCodeCreate(CommonCodeDTO param);
+
+    void detailCodeUpdate(CommonDetailCodeDTO param);
+
+    void hirCodeUpdate(CommonCodeDTO param);
+
+    void detailCodeCreate(CommonDetailCodeDTO param);
 }

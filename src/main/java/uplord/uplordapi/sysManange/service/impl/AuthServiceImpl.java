@@ -7,7 +7,7 @@ import uplord.uplordapi.common.exception.NoDeletedDataException;
 import uplord.uplordapi.common.exception.NoUpdatedDataException;
 import uplord.uplordapi.sysManange.dao.AuthDAO;
 import uplord.uplordapi.sysManange.service.AuthService;
-import uplord.uplordapi.sysManange.vo.AuthVO;
+import uplord.uplordapi.sysManange.dto.AuthDTO;
 
 import java.util.List;
 
@@ -18,15 +18,15 @@ public class AuthServiceImpl implements AuthService {
     private final AuthDAO dao;
 
     @Override
-    public List<AuthVO> findAllAthList(AuthVO param) {
+    public List<AuthDTO> findAllAthList(AuthDTO param) {
         return dao.findAuthList(param);
     }
 
     @Override
-    public void create(AuthVO param) {
+    public void create(AuthDTO param) {
         int result = 0;
 
-        for (AuthVO item : param.getAddedRowItems()) {
+        for (AuthDTO item : param.getAddedRowItems()) {
             result += dao.create(item);
         }
         if (result == 0) {
@@ -35,10 +35,10 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void update(AuthVO param) {
+    public void update(AuthDTO param) {
         int result = 0;
 
-        for (AuthVO item : param.getEditedRowItems()) {
+        for (AuthDTO item : param.getEditedRowItems()) {
             result += dao.update(item);
         }
         if (result == 0) {
@@ -47,11 +47,11 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void createAthGp(AuthVO param) {
+    public void createAthGp(AuthDTO param) {
         int result = 1;
-        List<AuthVO> vos = dao.findAthGpList(param);
+        List<AuthDTO> vos = dao.findAthGpList(param);
 
-        for (AuthVO item : param.getAddedRowItems()) {
+        for (AuthDTO item : param.getAddedRowItems()) {
             if (vos.contains(item)) {
                 continue;
             }
@@ -64,10 +64,10 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void deleteAthGp(AuthVO param) {
+    public void deleteAthGp(AuthDTO param) {
         int result = 1;
 
-        for (AuthVO item : param.getRemovedRowItems()) {
+        for (AuthDTO item : param.getRemovedRowItems()) {
             result *= dao.deleteAthGp(item);
         }
 
@@ -77,12 +77,12 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public List<AuthVO> findNotAthGpList(AuthVO param) {
+    public List<AuthDTO> findNotAthGpList(AuthDTO param) {
         return dao.findNotAthGpList(param);
     }
 
     @Override
-    public List<AuthVO> findAthGpList(AuthVO param) {
+    public List<AuthDTO> findAthGpList(AuthDTO param) {
         return dao.findAthGpList(param);
     }
 }

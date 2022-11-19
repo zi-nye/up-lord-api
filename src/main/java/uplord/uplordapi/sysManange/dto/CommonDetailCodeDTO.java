@@ -1,11 +1,11 @@
-package uplord.uplordapi.sysManange.vo;
+package uplord.uplordapi.sysManange.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CommonDetailCodeVO {
+public class CommonDetailCodeDTO {
     private String hirCd;
     private String dtlCd;
     private String dtlCdNm;

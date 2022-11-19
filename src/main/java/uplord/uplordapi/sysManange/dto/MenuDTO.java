@@ -1,6 +1,6 @@
-package uplord.uplordapi.sysManange.menu.vo;
+package uplord.uplordapi.sysManange.dto;
 
-public class MenuVo {
+public class MenuDTO {
 	private String menuCd;
 	private String hirMenuCd;
 	private String menuUrl;

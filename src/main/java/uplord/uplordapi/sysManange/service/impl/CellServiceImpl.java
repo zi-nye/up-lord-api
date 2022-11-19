@@ -6,7 +6,7 @@ import uplord.uplordapi.common.exception.NoCreatedDataException;
 import uplord.uplordapi.common.exception.NoUpdatedDataException;
 import uplord.uplordapi.sysManange.dao.CellDAO;
 import uplord.uplordapi.sysManange.service.CellService;
-import uplord.uplordapi.sysManange.vo.CellVO;
+import uplord.uplordapi.sysManange.dto.CellDTO;
 
 import java.util.List;
 
@@ -17,12 +17,12 @@ public class CellServiceImpl implements CellService {
     private final CellDAO dao;
 
     @Override
-    public List<CellVO> findList(CellVO param) {
+    public List<CellDTO> findList(CellDTO param) {
         return dao.findList(param);
     }
 
     @Override
-    public void update(CellVO param) {
+    public void update(CellDTO param) {
         int result = dao.update(param);
 
         if (result == 0) {
@@ -33,7 +33,7 @@ public class CellServiceImpl implements CellService {
     }
 
     @Override
-    public void create(CellVO param) {
+    public void create(CellDTO param) {
         int result = dao.create(param);
 
         if (result == 0) {

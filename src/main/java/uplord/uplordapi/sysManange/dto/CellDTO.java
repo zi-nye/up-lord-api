@@ -1,11 +1,11 @@
-package uplord.uplordapi.sysManange.vo;
+package uplord.uplordapi.sysManange.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CellVO {
+public class CellDTO {
     private String cellCd;
     private String cellLeaderUid;
     private String hirCellCd;

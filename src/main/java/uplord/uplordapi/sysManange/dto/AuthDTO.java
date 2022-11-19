@@ -1,4 +1,4 @@
-package uplord.uplordapi.sysManange.vo;
+package uplord.uplordapi.sysManange.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class AuthVO {
+public class AuthDTO {
     private String authCd;
     private String authNm;
     private String authDesc;
@@ -21,7 +21,7 @@ public class AuthVO {
     private String updatedIp;
     private String menuCd;
 
-    private List<AuthVO> addedRowItems;   // 추가된 데이터
-    private List<AuthVO> editedRowItems;  // 수정된 데이터
-    private List<AuthVO> removedRowItems; // 삭제된 데이터
+    private List<AuthDTO> addedRowItems;   // 추가된 데이터
+    private List<AuthDTO> editedRowItems;  // 수정된 데이터
+    private List<AuthDTO> removedRowItems; // 삭제된 데이터
 }

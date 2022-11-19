@@ -1,12 +1,12 @@
 package uplord.uplordapi.sysManange.service;
-import uplord.uplordapi.sysManange.vo.CellVO;
+import uplord.uplordapi.sysManange.dto.CellDTO;
 
 import java.util.List;
 
 public interface CellService {
-    List<CellVO> findList(CellVO param);
+    List<CellDTO> findList(CellDTO param);
 
-    void update(CellVO param);
+    void update(CellDTO param);
 
-    void create(CellVO param);
+    void create(CellDTO param);
 }

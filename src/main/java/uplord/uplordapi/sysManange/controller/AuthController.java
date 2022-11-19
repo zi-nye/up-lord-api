@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uplord.uplordapi.common.model.CommonResponse;
 import uplord.uplordapi.sysManange.service.AuthService;
-import uplord.uplordapi.sysManange.vo.AuthVO;
+import uplord.uplordapi.sysManange.dto.AuthDTO;
 
 import java.util.List;
 
@@ -18,12 +18,12 @@ public class AuthController {
 
     // 권한 그룹 조회
     @GetMapping
-    public ResponseEntity<List<AuthVO>> findAllAthList(AuthVO param){
+    public ResponseEntity<List<AuthDTO>> findAllAthList(AuthDTO param){
         return ResponseEntity.ok(service.findAllAthList(param));
     }
 
     @PostMapping
-    public ResponseEntity<CommonResponse> create(@RequestBody AuthVO param) {
+    public ResponseEntity<CommonResponse> create(@RequestBody AuthDTO param) {
         // TODO 세션값 넣는 로직 필요 -> 생성자 UID
 
         service.create(param);
@@ -31,7 +31,7 @@ public class AuthController {
     }
 
     @PutMapping
-    public ResponseEntity<CommonResponse> update(@RequestBody AuthVO param){
+    public ResponseEntity<CommonResponse> update(@RequestBody AuthDTO param){
         // TODO 세션값에 있는 유저 넣는 로직 필요 -> 수정자 UID, 수정자 IP
 
         service.update(param);
@@ -39,7 +39,7 @@ public class AuthController {
     }
 
     @PostMapping("athGp/create")
-    public ResponseEntity<CommonResponse> createAthGp(@RequestBody AuthVO param) {
+    public ResponseEntity<CommonResponse> createAthGp(@RequestBody AuthDTO param) {
         // TODO 세션값 넣는 로직 필요 -> 생성자 UID
 
         service.createAthGp(param);
@@ -47,7 +47,7 @@ public class AuthController {
     }
 
     @PostMapping("athGp/delete")
-    public ResponseEntity<CommonResponse> deleteAthGp(@RequestBody AuthVO param){
+    public ResponseEntity<CommonResponse> deleteAthGp(@RequestBody AuthDTO param){
         // TODO 세션값에 있는 유저 넣는 로직 필요 -> 수정자 UID, 수정자 IP
 
         service.deleteAthGp(param);
@@ -57,13 +57,13 @@ public class AuthController {
 
     // 권한이 없는 전체 메뉴 조회
     @GetMapping("notAthGp")
-    public ResponseEntity<List<AuthVO>> getMenu(AuthVO param) {
+    public ResponseEntity<List<AuthDTO>> getMenu(AuthDTO param) {
         return ResponseEntity.ok(service.findNotAthGpList(param));
     }
 
     // 권한을 갖고 있는 메뉴 조회
     @GetMapping("athGp")
-    public ResponseEntity<List<AuthVO>> getAthMenu(AuthVO param) {
+    public ResponseEntity<List<AuthDTO>> getAthMenu(AuthDTO param) {
         return ResponseEntity.ok(service.findAthGpList(param));
     }
 

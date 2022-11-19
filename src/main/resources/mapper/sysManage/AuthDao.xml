@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uplord.uplordapi.sysManange.dao.AuthDAO">
-    <select id="findAuthList" parameterType="AuthVO" resultType="AuthVO">
+    <select id="findAuthList" parameterType="AuthDTO" resultType="AuthDTO">
         SELECT
             AUTH_CD
              , AUTH_NM
@@ -23,7 +23,7 @@
         ORDER BY ORD, ATH_CD
      </select>
 
-    <insert id="create" parameterType="AuthVO" >
+    <insert id="create" parameterType="AuthDTO" >
         <selectKey resultType="string" keyProperty="authCd" order="BEFORE">
             SELECT CONCAT('A',LPAD(IFNULL(MAX(SUBSTR(AUTH_CD, -4))+1,1),4,0)) FROM AUTH
         </selectKey>
@@ -56,7 +56,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="AuthVO" >
+    <update id="update" parameterType="AuthDTO" >
         UPDATE AUTH
         SET AUTH_NM  = #{authNm}
             ,AUTH_DESC = #{authDesc}
@@ -68,7 +68,7 @@
         WHERE AUTH_CD = #{authCd}
     </update>
 
-    <insert id="createAthGp" parameterType="AuthVO">
+    <insert id="createAthGp" parameterType="AuthDTO">
         INSERT INTO AUTH_GROUP
             (AUTH_CD
             , MENU_CD
@@ -93,13 +93,13 @@
                 )
     </insert>
 
-    <delete id="deleteAthGp" parameterType="AuthVO">
+    <delete id="deleteAthGp" parameterType="AuthDTO">
         DELETE FROM AUTH_GROUP
         WHERE  AUTH_CD = #{athCd}
           AND MENU_CD = #{menuCd}
     </delete>
 
-    <select id="findNotAthGpList" parameterType="AuthVO" resultType="AuthVO">
+    <select id="findNotAthGpList" parameterType="AuthDTO" resultType="AuthDTO">
         SELECT
             M1.MENU_CD
              , M1.HIR_MENU_CD
@@ -122,7 +122,7 @@
                                  ORDER BY M1.MENU_CD)
     </select>
 
-    <select id="findAthGpList" parameterType="AuthVO" resultType="AuthVO">
+    <select id="findAthGpList" parameterType="AuthDTO" resultType="AuthDTO">
         SELECT
             M1.MENU_CD
              , M1.HIR_MENU_CD

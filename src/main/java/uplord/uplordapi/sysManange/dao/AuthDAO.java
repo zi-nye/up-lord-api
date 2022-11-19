@@ -2,7 +2,7 @@ package uplord.uplordapi.sysManange.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import uplord.uplordapi.sysManange.vo.AuthVO;
+import uplord.uplordapi.sysManange.dto.AuthDTO;
 
 import java.util.List;
 
@@ -10,17 +10,17 @@ import java.util.List;
 @Repository
 public interface AuthDAO {
 
-    List<AuthVO> findAuthList(AuthVO param);
+    List<AuthDTO> findAuthList(AuthDTO param);
 
-    int update(AuthVO param);
+    int update(AuthDTO param);
 
-    int create(AuthVO param);
+    int create(AuthDTO param);
 
-    int deleteAthGp(AuthVO param);
+    int deleteAthGp(AuthDTO param);
 
-    int createAthGp(AuthVO param);
+    int createAthGp(AuthDTO param);
 
-    List<AuthVO> findNotAthGpList(AuthVO param);
+    List<AuthDTO> findNotAthGpList(AuthDTO param);
 
-    List<AuthVO> findAthGpList(AuthVO param);
+    List<AuthDTO> findAthGpList(AuthDTO param);
 }
