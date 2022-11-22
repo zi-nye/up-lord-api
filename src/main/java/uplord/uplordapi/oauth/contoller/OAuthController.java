@@ -25,7 +25,7 @@ public class OAuthController {
             String authCode = body.get("code");
 
             String access_Token = service.getKakaoAccessToken(authCode);
-            String token = service.createKakaoUser(access_Token);
+            String token = service.authenticateUser(access_Token);
 
             result.put("token", token);
 
@@ -33,6 +33,7 @@ public class OAuthController {
 
 
         }catch (IOException ioe){
+
             String msg = "카카오톡 API 통신 중 오류가 발생했습니다.";
             result.put("msg", msg);
             return ResponseEntity.internalServerError()
@@ -40,6 +41,7 @@ public class OAuthController {
 
 
         }catch (Exception e) {
+            e.printStackTrace();
             String msg = e.getMessage();
             result.put("msg", msg);
             return ResponseEntity.internalServerError()

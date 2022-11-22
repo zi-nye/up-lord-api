@@ -1,8 +1,5 @@
 package uplord.uplordapi.oauth.service;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -13,11 +10,12 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import uplord.uplordapi.common.JwtTokenProvider;
 import uplord.uplordapi.oauth.dao.OauthDAO;
+import uplord.uplordapi.oauth.vo.KakaoAccount;
+import uplord.uplordapi.oauth.vo.KakaoUserVO;
+import uplord.uplordapi.oauth.vo.KaKaoProperties;
 import uplord.uplordapi.oauth.vo.UserVO;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Map;
 
 @Service
@@ -62,48 +60,37 @@ public class OAuthService {
         return access_Token;
     }
 
-    public String createKakaoUser(String token) throws IOException {
-
+    private KakaoUserVO getKakaoUser(String token) throws IOException {
         String reqURL = "https://kapi.kakao.com/v2/user/me";
 
         //access_token을 이용하여 사용자 정보 조회
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization","Bearer " + token);
-        Map<String, Object> result = restTemplate.postForObject(reqURL,new HttpEntity<>(headers), Map.class);
 
-        System.out.println(result);
+        return restTemplate.postForObject(reqURL,new HttpEntity<>(headers), KakaoUserVO.class);
+    }
 
-        String snsId = result.get("id").toString();
+    public String authenticateUser(String token) throws IOException {
 
-        Map<String, Object> kakaoAccount = (Map<String, Object>) result.get("kakao_account");
-        Map<String, String> profile = (Map<String, String>) kakaoAccount.get("profile");
+        KakaoUserVO kakaoUserInfo = getKakaoUser(token);
 
-        System.out.println(kakaoAccount);
-
-        String name = profile.get("nickname");
-
-        boolean hasEmail = (Boolean) kakaoAccount.get("has_email");
-        String email = "";
-        if (hasEmail) {
-            email = kakaoAccount.get("email").toString();
-        }
+        String snsId = kakaoUserInfo.getId().toString();
+        KakaoAccount kakaoAccount = kakaoUserInfo.getKakao_account();
+        KaKaoProperties kakaoProperties = kakaoUserInfo.getProperties();
 
         // 등록된 유저가 아니라면, 신규 삽입
         if (dao.findUserBySnsId(snsId) == null) {
             UserVO user = UserVO.builder()
                     .snsType("KAKAO")
                     .snsId(snsId)
-                    .userEmail(email)
-                    .userName(name)
+                    .userEmail(kakaoAccount.getEmail())
+                    .userName(kakaoProperties.getNickname())
                     .build();
 
             dao.createUser(user);
         }
 
         UserVO user = dao.findUserBySnsId(snsId);
-
-        System.out.println(user);
-
         // TODO 토큰 발급
         return jwtTokenProvider.createToken(user.getUsername());
     }
