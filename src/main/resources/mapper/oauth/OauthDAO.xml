@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uplord.uplordapi.oauth.dao.OauthDAO">
+    <insert id="createUser" parameterType="UserVO">
+        INSERT
+        INTO UP_LORD.USER (USER_NAME, USER_EMAIL, USER_BIRTH, SNS_TYPE, SNS_ID)
+        VALUES (#{userName}, #{userEmail}, #{userBirth}, #{snsType}, #{snsId})
+    </insert>
+
+    <select id="findUserByUserId" parameterType="String" resultType="UserVO">
+        SELECT *
+        FROM UP_LORD.USER
+        WHERE USER_ID = ${value}
+    </select>
+
+    <select id="findUserBySnsId" parameterType="String" resultType="UserVO">
+        SELECT *
+        FROM UP_LORD.USER
+        WHERE SNS_ID = ${value}
+    </select>
+
+
+</mapper>

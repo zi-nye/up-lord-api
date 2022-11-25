@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uplord.uplordapi.sysManange.menu.dao.MenuDAO">
+    <select id="listAll" parameterType="" resultType="MenuDto">
+        SELECT DISTINCT B.HIR_MENU_CD
+                      , A.MENU_NM
+                      , B.MENU_CD
+                      , B.MENU_NM
+                      , B.MENU_URL
+                      , B.MENU_ORD
+                      , B.MENU_DESC
+                      , B.USE_YN
+        FROM MENU M1
+                 JOIN MENU M2 ON M1.MENU_CD = M2.HIR_MENU_CD
+        WHERE M1.MENU_CD != 'M0000'
+        ORDER BY M2.MENU_CD, M2.MENU_ORD
+    </select>
+</mapper>
