@@ -1,5 +1,14 @@
+
 package uplord.uplordapi.sysManange.dto;
 
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class MenuDTO {
 	private String menuCd;
 	private String hirMenuCd;
@@ -7,6 +16,5 @@ public class MenuDTO {
 	private String menuNm;
 	private String menuOrd;
 	private String menuDesc;
-	private String menuVisibleYn;
 	private String useYn;
 }
