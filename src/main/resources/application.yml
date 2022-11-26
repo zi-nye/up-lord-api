@@ -50,3 +50,8 @@ mybatis:
 kakao:
   rest-api-key: "d8ffee0aed78643ac7c0644a387c1e2e"
   redirect-url: "http://localhost:3000/oauth"
+
+jwt:
+  secret-key: "ZI-NYE-CHUNG-CHUNG"
+
+

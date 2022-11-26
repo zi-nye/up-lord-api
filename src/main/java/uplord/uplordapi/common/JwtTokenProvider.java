@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,15 +18,13 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
-// 토큰을 생성하고 검증하는 클래스입니다.
-// 해당 컴포넌트는 필터클래스에서 사전 검증을 거칩니다.
 @RequiredArgsConstructor
 @Component
 public class JwtTokenProvider {
-    private String secretKey = "ZI-NYE-CHUNG-CHUNG"; // TODO yml 파일에 빼기
+    @Value("${jwt.secret-key}")
+    private String secretKey;
 
-    // 토큰 유효시간 30분
-    private final long tokenValidTime = 30 * 60 * 1000L;
+    private final long tokenValidTime = 30 * 60 * 1000L; // 토큰 유효시간 30분
 
     private final UserDetailsService userDetailsService;
 
@@ -44,7 +43,7 @@ public class JwtTokenProvider {
                 .setIssuedAt(now) // 토큰 발행 시간 정보
                 .setExpiration(new Date(now.getTime() + tokenValidTime)) // set Expire Time
                 .signWith(SignatureAlgorithm.HS256, secretKey)  // 사용할 암호화 알고리즘과
-                // signature 에 들어갈 secret값 세팅
+                // signature 에 들어갈 secret값 세팅용
                 .compact();
     }
 
