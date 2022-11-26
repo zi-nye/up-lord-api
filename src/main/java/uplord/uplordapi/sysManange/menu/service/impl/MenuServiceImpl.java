@@ -11,7 +11,7 @@ import java.util.List;
 @Service @RequiredArgsConstructor public class MenuServiceImpl implements MenuService {
 	private final MenuDAO menuDAO;
 
-	@Override public List<MenuDto> findList(MenuDto param) {
+	@Override public List<MenuDto> findList(MenuDto param) throws Exception {
 		return menuDAO.findList(param);
 	}
 }

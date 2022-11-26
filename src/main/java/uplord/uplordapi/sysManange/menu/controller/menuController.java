@@ -18,7 +18,7 @@ public class menuController {
 	private final MenuService service;
 
 	@GetMapping
-	public ResponseEntity<List<MenuDto>> findList(MenuDto param) {
-		return ResponseEntity.ok(service.findList(param));
+	public ResponseEntity<List<MenuDto>> findList(MenuDto menuDto) throws Exception{
+		return ResponseEntity.ok(service.findList(menuDto));
 	}
 }
