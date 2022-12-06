@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uplord.uplordapi.common.model.CommonResponse;
-import uplord.uplordapi.sysManange.dto.CommonDetailCodeDTO;
+import uplord.uplordapi.dto.CommonDetailCodeDTO;
 import uplord.uplordapi.sysManange.service.CommonCodeService;
-import uplord.uplordapi.sysManange.dto.CommonCodeDTO;
+import uplord.uplordapi.dto.CommonCodeDTO;
 
 import java.util.List;
 

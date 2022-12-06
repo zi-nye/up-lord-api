@@ -1,6 +1,6 @@
 package uplord.uplordapi.sysManange.service;
 
-import uplord.uplordapi.sysManange.dto.UserDTO;
+import uplord.uplordapi.dto.UserDTO;
 
 import java.util.List;
 

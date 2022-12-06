@@ -13,7 +13,7 @@ import uplord.uplordapi.oauth.dao.OauthDAO;
 import uplord.uplordapi.oauth.vo.KakaoAccount;
 import uplord.uplordapi.oauth.vo.KakaoUserVO;
 import uplord.uplordapi.oauth.vo.KaKaoProperties;
-import uplord.uplordapi.oauth.vo.UserVO;
+import uplord.uplordapi.dto.UserDTO;
 
 import java.io.*;
 import java.util.Map;
@@ -80,7 +80,7 @@ public class OAuthService {
 
         // 등록된 유저가 아니라면, 신규 삽입
         if (dao.findUserBySnsId(snsId) == null) {
-            UserVO user = UserVO.builder()
+            UserDTO user = UserDTO.builder()
                     .snsType("KAKAO")
                     .snsId(snsId)
                     .userEmail(kakaoAccount.getEmail())
@@ -90,7 +90,7 @@ public class OAuthService {
             dao.createUser(user);
         }
 
-        UserVO user = dao.findUserBySnsId(snsId);
+        UserDTO user = dao.findUserBySnsId(snsId);
         // TODO 토큰 발급
         return jwtTokenProvider.createToken(user.getUsername());
     }

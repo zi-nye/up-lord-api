@@ -1,5 +1,5 @@
 package uplord.uplordapi.sysManange.service;
-import uplord.uplordapi.sysManange.dto.CellDTO;
+import uplord.uplordapi.dto.CellDTO;
 
 import java.util.List;
 

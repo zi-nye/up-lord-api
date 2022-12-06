@@ -7,7 +7,7 @@ import uplord.uplordapi.common.exception.NoDeletedDataException;
 import uplord.uplordapi.common.exception.NoUpdatedDataException;
 import uplord.uplordapi.sysManange.dao.AuthDAO;
 import uplord.uplordapi.sysManange.service.AuthService;
-import uplord.uplordapi.sysManange.dto.AuthDTO;
+import uplord.uplordapi.dto.AuthDTO;
 
 import java.util.List;
 

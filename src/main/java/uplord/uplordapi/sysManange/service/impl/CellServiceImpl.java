@@ -6,7 +6,7 @@ import uplord.uplordapi.common.exception.NoCreatedDataException;
 import uplord.uplordapi.common.exception.NoUpdatedDataException;
 import uplord.uplordapi.sysManange.dao.CellDAO;
 import uplord.uplordapi.sysManange.service.CellService;
-import uplord.uplordapi.sysManange.dto.CellDTO;
+import uplord.uplordapi.dto.CellDTO;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package uplord.uplordapi.sysManange.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import uplord.uplordapi.sysManange.dto.UserDTO;
+import uplord.uplordapi.dto.UserDTO;
 
 import java.util.List;
 

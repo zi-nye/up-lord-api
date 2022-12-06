@@ -1,4 +1,4 @@
-package uplord.uplordapi.sysManange.dto;
+package uplord.uplordapi.dto;
 
 import lombok.Getter;
 import lombok.Setter;

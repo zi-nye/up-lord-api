@@ -1,6 +1,6 @@
 package uplord.uplordapi.sysManange.service;
 
-import uplord.uplordapi.sysManange.dto.MenuDTO;
+import uplord.uplordapi.dto.MenuDTO;
 
 import java.util.List;
 

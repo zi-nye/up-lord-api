@@ -2,15 +2,15 @@ package uplord.uplordapi.oauth.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import uplord.uplordapi.oauth.vo.UserVO;
+import uplord.uplordapi.dto.UserDTO;
 
 @Mapper
 @Repository
 public interface OauthDAO {
-    void createUser(UserVO user);
+    void createUser(UserDTO user);
 
-    UserVO findUserByUserId(String userId);
+    UserDTO findUserByUserId(String userId);
 
-    UserVO findUserBySnsId(String snsId);
+    UserDTO findUserBySnsId(String snsId);
 
 }

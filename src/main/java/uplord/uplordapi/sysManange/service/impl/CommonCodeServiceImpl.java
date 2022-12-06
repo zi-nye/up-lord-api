@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 import uplord.uplordapi.common.exception.NoCreatedDataException;
 import uplord.uplordapi.common.exception.NoUpdatedDataException;
 import uplord.uplordapi.sysManange.dao.CommonCodeDAO;
-import uplord.uplordapi.sysManange.dto.CommonDetailCodeDTO;
+import uplord.uplordapi.dto.CommonDetailCodeDTO;
 import uplord.uplordapi.sysManange.service.CommonCodeService;
-import uplord.uplordapi.sysManange.dto.CommonCodeDTO;
+import uplord.uplordapi.dto.CommonCodeDTO;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package uplord.uplordapi.sysManange.service;
 
-import uplord.uplordapi.sysManange.dto.CommonCodeDTO;
-import uplord.uplordapi.sysManange.dto.CommonDetailCodeDTO;
+import uplord.uplordapi.dto.CommonCodeDTO;
+import uplord.uplordapi.dto.CommonDetailCodeDTO;
 
 import java.util.List;
 

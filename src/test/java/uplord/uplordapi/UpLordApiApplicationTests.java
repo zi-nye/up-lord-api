@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import uplord.uplordapi.sysManange.service.impl.CellServiceImpl;
-import uplord.uplordapi.sysManange.dto.CellDTO;
+import uplord.uplordapi.dto.CellDTO;
 
 import java.util.List;
 

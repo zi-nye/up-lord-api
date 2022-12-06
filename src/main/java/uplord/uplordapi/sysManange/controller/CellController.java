@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uplord.uplordapi.common.model.CommonResponse;
 import uplord.uplordapi.sysManange.service.CellService;
-import uplord.uplordapi.sysManange.dto.CellDTO;
+import uplord.uplordapi.dto.CellDTO;
 
 import java.util.List;
 @RestController

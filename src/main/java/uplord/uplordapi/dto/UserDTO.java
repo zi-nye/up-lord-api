@@ -1,4 +1,4 @@
-package uplord.uplordapi.oauth.vo;
+package uplord.uplordapi.dto;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,15 +11,19 @@ import java.util.Collection;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserVO implements UserDetails {
+public class UserDTO implements UserDetails {
     private String userId;
     private String userName;
     private String userEmail;
+    private String password;
     private String userPhone;
     private String userBirth;
     private String userNickname;
+    private String gender;
     private String snsType;
     private String snsId;
+    private String authCd;
+    private String cellCd;
     private String useYn;
 
     @Override

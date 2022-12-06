@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uplord.uplordapi.common.model.CommonResponse;
 import uplord.uplordapi.sysManange.service.AuthService;
-import uplord.uplordapi.sysManange.dto.AuthDTO;
+import uplord.uplordapi.dto.AuthDTO;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uplord.uplordapi.sysManange.menu.dao.MenuDAO;
 import uplord.uplordapi.sysManange.service.MenuService;
-import uplord.uplordapi.sysManange.dto.MenuDTO;
+import uplord.uplordapi.dto.MenuDTO;
 
 import java.util.List;
 
