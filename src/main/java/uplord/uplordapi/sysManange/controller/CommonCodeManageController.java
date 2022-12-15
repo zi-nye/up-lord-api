@@ -5,17 +5,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uplord.uplordapi.common.model.CommonResponse;
 import uplord.uplordapi.dto.CommonDetailCodeDTO;
-import uplord.uplordapi.sysManange.service.CommonCodeService;
+import uplord.uplordapi.sysManange.service.CommonCodeManageService;
 import uplord.uplordapi.dto.CommonCodeDTO;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("sysManage/commonCode")
-public class CommonCodeController {
+@RequestMapping("sysManage/commonCodeManage")
+public class CommonCodeManageController {
 
-    private final CommonCodeService service;
+    private final CommonCodeManageService service;
 
     @GetMapping("hirCodeList")
     public ResponseEntity<List<CommonCodeDTO>> findHirCodeList(CommonCodeDTO param){

@@ -4,6 +4,6 @@ import uplord.uplordapi.dto.MenuDTO;
 
 import java.util.List;
 
-public interface MenuService {
+public interface MenuManageService {
 	List<MenuDTO> findList(MenuDTO param) throws Exception;
 }

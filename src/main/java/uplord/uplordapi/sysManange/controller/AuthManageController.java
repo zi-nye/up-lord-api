@@ -4,17 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uplord.uplordapi.common.model.CommonResponse;
-import uplord.uplordapi.sysManange.service.AuthService;
+import uplord.uplordapi.sysManange.service.AuthManageService;
 import uplord.uplordapi.dto.AuthDTO;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("sysManage/auth")
-public class AuthController {
+@RequestMapping("sysManage/authManage")
+public class AuthManageController {
 
-    private final AuthService service;
+    private final AuthManageService service;
 
     // 권한 그룹 조회
     @GetMapping

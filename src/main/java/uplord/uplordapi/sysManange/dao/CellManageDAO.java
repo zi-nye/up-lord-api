@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface CellDAO {
+public interface CellManageDAO {
     List<CellDTO> findList(CellDTO param);
 
     int create(CellDTO param);

@@ -4,17 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uplord.uplordapi.common.exception.NoCreatedDataException;
 import uplord.uplordapi.common.exception.NoUpdatedDataException;
-import uplord.uplordapi.sysManange.dao.CellDAO;
-import uplord.uplordapi.sysManange.service.CellService;
+import uplord.uplordapi.sysManange.dao.CellManageDAO;
+import uplord.uplordapi.sysManange.service.CellManageService;
 import uplord.uplordapi.dto.CellDTO;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CellServiceImpl implements CellService {
+public class CellManageServiceImpl implements CellManageService {
 
-    private final CellDAO dao;
+    private final CellManageDAO dao;
 
     @Override
     public List<CellDTO> findList(CellDTO param) {

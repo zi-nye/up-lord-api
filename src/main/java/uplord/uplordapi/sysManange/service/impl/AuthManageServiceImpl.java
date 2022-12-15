@@ -5,17 +5,17 @@ import org.springframework.stereotype.Service;
 import uplord.uplordapi.common.exception.NoCreatedDataException;
 import uplord.uplordapi.common.exception.NoDeletedDataException;
 import uplord.uplordapi.common.exception.NoUpdatedDataException;
-import uplord.uplordapi.sysManange.dao.AuthDAO;
-import uplord.uplordapi.sysManange.service.AuthService;
+import uplord.uplordapi.sysManange.dao.AuthManageDAO;
+import uplord.uplordapi.sysManange.service.AuthManageService;
 import uplord.uplordapi.dto.AuthDTO;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AuthServiceImpl implements AuthService {
+public class AuthManageServiceImpl implements AuthManageService {
 
-    private final AuthDAO dao;
+    private final AuthManageDAO dao;
 
     @Override
     public List<AuthDTO> findAllAthList(AuthDTO param) {

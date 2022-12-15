@@ -5,13 +5,13 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public enum CommonCodeDiv {
+public enum CommonCodeManageDiv {
     SYSTEM_CODE_DIV("S"),
     USER_CODE_DIV("U");
 
     private final String code;
 
-    CommonCodeDiv(String code) {
+    CommonCodeManageDiv(String code) {
         this.code = code;
     }
 
@@ -19,10 +19,10 @@ public enum CommonCodeDiv {
         return code;
     }
 
-    private static final Map<String, CommonCodeDiv> BY_CODE =
-            Stream.of(CommonCodeDiv.values()).collect(Collectors.toMap(CommonCodeDiv::getCode, Function.identity()));
+    private static final Map<String, CommonCodeManageDiv> BY_CODE =
+            Stream.of(CommonCodeManageDiv.values()).collect(Collectors.toMap(CommonCodeManageDiv::getCode, Function.identity()));
 
-    public static CommonCodeDiv valueOfCode(String code) {
+    public static CommonCodeManageDiv valueOfCode(String code) {
         return BY_CODE.get(code);
     }
 }
