@@ -1,11 +1,11 @@
-package uplord.uplordapi.sysManange.service.impl;
+package uplord.uplordapi.sysManage.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uplord.uplordapi.common.exception.NoCreatedDataException;
 import uplord.uplordapi.common.exception.NoUpdatedDataException;
-import uplord.uplordapi.sysManange.dao.CellManageDAO;
-import uplord.uplordapi.sysManange.service.CellManageService;
+import uplord.uplordapi.sysManage.dao.CellManageDAO;
+import uplord.uplordapi.sysManage.service.CellManageService;
 import uplord.uplordapi.dto.CellDTO;
 
 import java.util.List;

@@ -1,10 +1,10 @@
-package uplord.uplordapi.sysManange.service.impl;
+package uplord.uplordapi.sysManage.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uplord.uplordapi.dto.UserDTO;
-import uplord.uplordapi.sysManange.dao.UserManageDAO;
-import uplord.uplordapi.sysManange.service.UserManageService;
+import uplord.uplordapi.sysManage.dao.UserManageDAO;
+import uplord.uplordapi.sysManage.service.UserManageService;
 
 import java.util.List;
 

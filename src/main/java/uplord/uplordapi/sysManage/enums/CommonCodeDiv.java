@@ -1,4 +1,4 @@
-package uplord.uplordapi.sysManange.enums;
+package uplord.uplordapi.sysManage.enums;
 
 import java.util.Map;
 import java.util.function.Function;
