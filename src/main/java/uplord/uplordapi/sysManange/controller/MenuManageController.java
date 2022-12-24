@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import uplord.uplordapi.dto.MenuDTO;
-import uplord.uplordapi.sysManange.service.MenuService;
+import uplord.uplordapi.sysManange.service.MenuManageService;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("menuManage")
-public class MenuController {
+@RequestMapping("sysManage/menuManage")
+public class MenuManageController {
 
-	private final MenuService service;
+	private final MenuManageService service;
 
 	@GetMapping
 	public ResponseEntity<List<MenuDTO>> findList(MenuDTO menuDto) throws Exception{

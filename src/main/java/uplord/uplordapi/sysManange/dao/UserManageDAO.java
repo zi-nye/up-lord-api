@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface UserDAO {
+public interface UserManageDAO {
     List<UserDTO> findList(UserDTO param);
 
     void update(UserDTO param);

@@ -4,18 +4,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uplord.uplordapi.common.exception.NoCreatedDataException;
 import uplord.uplordapi.common.exception.NoUpdatedDataException;
-import uplord.uplordapi.sysManange.dao.CommonCodeDAO;
+import uplord.uplordapi.sysManange.dao.CommonCodeManageDAO;
 import uplord.uplordapi.dto.CommonDetailCodeDTO;
-import uplord.uplordapi.sysManange.service.CommonCodeService;
+import uplord.uplordapi.sysManange.service.CommonCodeManageService;
 import uplord.uplordapi.dto.CommonCodeDTO;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CommonCodeServiceImpl implements CommonCodeService {
+public class CommonCodeManageServiceImpl implements CommonCodeManageService {
 
-    private final CommonCodeDAO dao;
+    private final CommonCodeManageDAO dao;
 
     @Override
     public List<CommonCodeDTO> findHirCodeList(CommonCodeDTO param) {

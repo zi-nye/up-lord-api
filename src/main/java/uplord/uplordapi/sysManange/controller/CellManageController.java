@@ -4,16 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uplord.uplordapi.common.model.CommonResponse;
-import uplord.uplordapi.sysManange.service.CellService;
+import uplord.uplordapi.sysManange.service.CellManageService;
 import uplord.uplordapi.dto.CellDTO;
 
 import java.util.List;
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("sysManage/cell")
-public class CellController {
+@RequestMapping("sysManage/cellManage")
+public class CellManageController {
 
-    private final CellService service;
+    private final CellManageService service;
 
     @GetMapping
     public ResponseEntity<List<CellDTO>> findList(CellDTO param){

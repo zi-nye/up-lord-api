@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface CommonCodeDAO {
+public interface CommonCodeManageDAO {
 
     List<CommonCodeDTO> findHirCodeList(CommonCodeDTO param);
 

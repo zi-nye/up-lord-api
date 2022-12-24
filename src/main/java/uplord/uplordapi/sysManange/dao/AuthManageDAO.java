@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface AuthDAO {
+public interface AuthManageDAO {
 
     List<AuthDTO> findAuthList(AuthDTO param);
 

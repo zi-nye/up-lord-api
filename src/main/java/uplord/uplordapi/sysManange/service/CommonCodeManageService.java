@@ -5,7 +5,7 @@ import uplord.uplordapi.dto.CommonDetailCodeDTO;
 
 import java.util.List;
 
-public interface CommonCodeService {
+public interface CommonCodeManageService {
     List<CommonCodeDTO> findHirCodeList(CommonCodeDTO param);
 
     List<CommonDetailCodeDTO> findDetailCodeList(CommonDetailCodeDTO param);

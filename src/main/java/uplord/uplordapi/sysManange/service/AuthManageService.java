@@ -4,7 +4,7 @@ import uplord.uplordapi.dto.AuthDTO;
 
 import java.util.List;
 
-public interface AuthService {
+public interface AuthManageService {
     List<AuthDTO> findAllAthList(AuthDTO param);
 
     void create(AuthDTO param);
