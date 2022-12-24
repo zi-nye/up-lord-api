@@ -1,4 +1,4 @@
-package uplord.uplordapi.sysManange.service;
+package uplord.uplordapi.sysManage.service;
 
 import uplord.uplordapi.dto.CommonCodeDTO;
 import uplord.uplordapi.dto.CommonDetailCodeDTO;

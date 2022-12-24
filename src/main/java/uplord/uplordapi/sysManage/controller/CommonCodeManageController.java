@@ -1,11 +1,11 @@
-package uplord.uplordapi.sysManange.controller;
+package uplord.uplordapi.sysManage.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uplord.uplordapi.common.model.CommonResponse;
 import uplord.uplordapi.dto.CommonDetailCodeDTO;
-import uplord.uplordapi.sysManange.service.CommonCodeManageService;
+import uplord.uplordapi.sysManage.service.CommonCodeManageService;
 import uplord.uplordapi.dto.CommonCodeDTO;
 
 import java.util.List;

@@ -3,7 +3,7 @@ package uplord.uplordapi;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import uplord.uplordapi.sysManange.service.impl.CellManageServiceImpl;
+import uplord.uplordapi.sysManage.service.impl.CellManageServiceImpl;
 import uplord.uplordapi.dto.CellDTO;
 
 import java.util.List;
