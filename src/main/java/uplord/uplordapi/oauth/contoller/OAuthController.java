@@ -1,8 +1,14 @@
 package uplord.uplordapi.oauth.contoller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import uplord.uplordapi.dto.UserDTO;
 import uplord.uplordapi.oauth.service.OAuthService;
 
 import java.io.IOException;
@@ -14,6 +20,8 @@ import java.util.Map;
 @RequestMapping("/oauth")
 public class OAuthController {
 
+    @Value("${jwt.header}")
+    public static String AUTHORIZATION_HEADER;
     private final OAuthService service;
 
     @ResponseBody
@@ -29,9 +37,7 @@ public class OAuthController {
 
             result.put("token", token);
 
-            return ResponseEntity.ok(result);
-
-
+            return new ResponseEntity<>(result, HttpStatus.OK);
         }catch (IOException ioe){
 
             String msg = "카카오톡 API 통신 중 오류가 발생했습니다.";
@@ -47,5 +53,13 @@ public class OAuthController {
             return ResponseEntity.internalServerError()
                     .body(result);
         }
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<String> test(Authentication authentication){
+
+        UserDTO user = (UserDTO) authentication.getPrincipal();
+
+        return ResponseEntity.ok(user.getUserEmail()+ "님 하하하하하하하");
     }
 }
