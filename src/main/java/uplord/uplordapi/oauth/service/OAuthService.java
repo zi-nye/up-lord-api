@@ -4,11 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import uplord.uplordapi.common.JwtTokenProvider;
+import uplord.uplordapi.common.TokenProvider;
 import uplord.uplordapi.oauth.dao.OauthDAO;
 import uplord.uplordapi.oauth.vo.KakaoAccount;
 import uplord.uplordapi.oauth.vo.KakaoUserVO;
@@ -32,7 +33,9 @@ public class OAuthService {
 
     private final RestTemplate restTemplate;
 
-    private final JwtTokenProvider jwtTokenProvider;
+    private final TokenProvider tokenProvider;
+
+    private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
 
     public String getKakaoAccessToken(String code) throws IOException { // TODO 다른 곳으로 빼기
@@ -54,7 +57,6 @@ public class OAuthService {
         refresh_Token = result.get("refresh_token");
 
         // TODO refresh_token의 경우 DB에 저장해야하는가?
-        //  해야한다면 createKakaoUser에서 수행할 것.
         System.out.println("refresh_token : " + refresh_Token);
 
         return access_Token;
@@ -91,7 +93,6 @@ public class OAuthService {
         }
 
         UserDTO user = dao.findUserBySnsId(snsId);
-        // TODO 토큰 발급
-        return jwtTokenProvider.createToken(user.getUsername());
+        return tokenProvider.createToken(user.getUserId());
     }
 }
