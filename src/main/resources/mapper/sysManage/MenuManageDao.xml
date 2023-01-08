@@ -1,19 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uplord.uplordapi.sysManage.menu.dao.MenuManageDAO">
-    <select id="findList" resultType="MenuDTO">
-        SELECT DISTINCT B.HIR_MENU_CD
-                      , A.MENU_NM
-                      , B.MENU_CD
-                      , B.MENU_NM
-                      , B.MENU_URL
-                      , B.MENU_ORD
-                      , B.MENU_DESC
-                      , B.USE_YN
-        FROM MENU A
-                 JOIN MENU B ON A.MENU_CD = B.HIR_MENU_CD
-        WHERE A.MENU_CD != 'M0000'
-        ORDER BY B.MENU_CD, B.MENU_ORD
-    </select>
+  <select id="findList" resultType="MenuDTO">
+    SELECT DISTINCT B.HIR_MENU_CD
+                  , A.MENU_NM
+                  , B.MENU_CD
+                  , B.MENU_NM
+                  , B.MENU_URL
+                  , B.MENU_ORD
+                  , B.MENU_DESC
+                  , B.USE_YN
+    FROM MENU A
+           JOIN MENU B ON A.MENU_CD = B.HIR_MENU_CD
+    WHERE A.MENU_CD != 'M0000'
+    ORDER BY B.MENU_CD, B.MENU_ORD
+  </select>
+
+  <!--  메뉴 수정 업데이트 -->
+  <update id="updateMenu" parameterType="uplord.uplordapi.dto.MenuDTO" >
+    UPDATE MENU
+    SET HIR_MENU_CD = #{hirMenuCd}
+      , MENU_URL    = #{menuUrl}
+      , MENU_NM     = #{menuCd}
+      , MENU_ORD    = #{menuOrd}
+      , MENU_DESC   = #{menuDesc}
+      , USE_YN      = #{useYn}
+    WHERE MENU_CD = #{menuCd}
+  </update>
+
+  <!--  todo: 나머지 유효성 검사 쿼리 작성하기-->
+  <select id="menuCodeCheck" resultType="int">
+    SELECT COUNT(*)
+    FROM MENU
+    WHERE MENU_CD = #{menuCD}
+  </select>
+
+  <select id="menuNameCheck" resultType="int">
+    SELECT COUNT(*)
+    FROM MENU
+    WHERE MENU_NM = #{menuNM}
+  </select>
+
+  <select id="menuUrlCheck" resultType="int">
+    SELECT COUNT(*)
+    FROM MENU
+    WHERE MENU_URL = #{menuURL}
+  </select>
 </mapper>

@@ -10,4 +10,12 @@ import java.util.List;
 @Repository
 public interface MenuManageDAO {
 	List<MenuDTO> findList(MenuDTO param);
+
+	void updateMenu(MenuDTO param);
+
+	int menuNameCheck(String menuNM);
+
+	int menuCodeCheck(String menuCD);
+
+	int menuUrlCheck(String menuURL);
 }
