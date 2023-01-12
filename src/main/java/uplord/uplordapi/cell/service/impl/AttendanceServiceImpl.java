@@ -1,9 +1,9 @@
-package uplord.uplordapi.cellManage.service.impl;
+package uplord.uplordapi.cell.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import uplord.uplordapi.cellManage.dao.AttendanceDAO;
-import uplord.uplordapi.cellManage.service.AttendanceService;
+import uplord.uplordapi.cell.dao.AttendanceDAO;
+import uplord.uplordapi.cell.service.AttendanceService;
 import uplord.uplordapi.common.exception.NoCreatedDataException;
 import uplord.uplordapi.common.exception.NoUpdatedDataException;
 import uplord.uplordapi.dto.AttendanceDTO;

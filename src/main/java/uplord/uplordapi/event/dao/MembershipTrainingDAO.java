@@ -1,9 +1,9 @@
-package uplord.uplordapi.cellManage.dao;
+package uplord.uplordapi.event.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-@Mapper
 @Repository
-public interface CellMasterDAO {
+@Mapper
+public interface MembershipTrainingDAO {
 }

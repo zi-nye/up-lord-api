@@ -1,9 +1,9 @@
-package uplord.uplordapi.cellManage.controller;
+package uplord.uplordapi.cell.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uplord.uplordapi.cellManage.service.AttendanceService;
+import uplord.uplordapi.cell.service.AttendanceService;
 import uplord.uplordapi.common.model.CommonResponse;
 import uplord.uplordapi.dto.AttendanceDTO;
 

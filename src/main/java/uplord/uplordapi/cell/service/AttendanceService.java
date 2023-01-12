@@ -1,4 +1,4 @@
-package uplord.uplordapi.cellManage.service;
+package uplord.uplordapi.cell.service;
 
 import uplord.uplordapi.dto.AttendanceDTO;
 
