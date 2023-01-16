@@ -1,10 +1,10 @@
-package uplord.uplordapi.sysManange.service.impl;
+package uplord.uplordapi.sysManage.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uplord.uplordapi.dto.HolidayDTO;
-import uplord.uplordapi.sysManange.dao.HolidayManageDAO;
-import uplord.uplordapi.sysManange.service.HolidayManageService;
+import uplord.uplordapi.sysManage.dao.HolidayManageDAO;
+import uplord.uplordapi.sysManage.service.HolidayManageService;
 
 import java.util.List;
 
