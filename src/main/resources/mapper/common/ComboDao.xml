@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uplord.uplordapi.common.dao.ComboDAO">
+    <select id="getUserList" resultType="ComboDTO">
+        SELECT USER_ID AS LABEL,
+               USER_NAME AS VALUE
+        FROM USER
+    </select>
+
+    <select id="getAuthList" resultType="ComboDTO">
+        SELECT AUTH_CD AS LABEL,
+               AUTH_NM AS VALUE
+        FROM AUTH
+    </select>
+
+    <select id="getAllMenuList" resultType="ComboDTO">
+        SELECT MENU_CD AS LABEL,
+               MENU_NM AS VALUE
+        FROM MENU
+    </select>
+
+    <select id="getUpperMenuList" resultType="ComboDTO">
+        SELECT MENU_CD AS LABEL,
+               MENU_NM AS VALUE
+        FROM MENU
+    </select>
+
+    <select id="getLowerMenuList" resultType="ComboDTO">
+        SELECT MENU_CD AS LABEL,
+               MENU_NM AS VALUE
+        FROM MENU
+    </select>
+
+    <select id="getCellList" resultType="ComboDTO">
+        SELECT CELL_CD AS LABEL,
+               CELL_NM AS VALUE
+        FROM CELL
+    </select>
+
+    <select id="getCellListByLevel" resultType="ComboDTO">
+        SELECT CELL_CD AS LABEL,
+               CELL_NM AS VALUE
+        FROM CELL
+    </select>
+
+    <select id="getCommonCode" resultType="ComboDTO">
+        SELECT DTL_CD AS LABEL,
+               DTL_CD_NM AS VALUE
+        FROM COM_DTL_CODE
+        WHERE HIR_CD = #{value}
+    </select>
+</mapper>

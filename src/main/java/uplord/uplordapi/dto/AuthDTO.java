@@ -2,12 +2,13 @@ package uplord.uplordapi.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import uplord.uplordapi.common.domain.UpdateDetect;
 
 import java.util.List;
 
 @Getter
 @Setter
-public class AuthDTO {
+public class AuthDTO implements UpdateDetect {
     private String authCd;
     private String authNm;
     private String authDesc;

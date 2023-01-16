@@ -2,10 +2,11 @@ package uplord.uplordapi.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import uplord.uplordapi.common.domain.UpdateDetect;
 
 @Getter
 @Setter
-public class CellDTO {
+public class CellDTO implements UpdateDetect {
     private String cellCd;
     private String cellLeaderUid;
     private String hirCellCd;

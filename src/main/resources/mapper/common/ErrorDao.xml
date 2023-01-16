@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uplord.uplordapi.common.dao.ErrorDAO">
+
+    <select id="nextIdx" resultType="Long">
+        SELECT NVL(MAX(ERRORLOG_ID), 0) + 1
+        FROM SY_ERRORLOG
+    </select>
+
+    <insert id="create" parameterType="ErrorDTO">
+        INSERT INTO SY_ERRORLOG
+            (ERRORLOG_ID, URL, EXCEPTION, MESSAGE, STACK_TRACE, CRT_DS)
+        VALUES (#{errorlogId}, #{url}, #{exception}, #{message}, #{stackTrace}, SYSDATE)
+    </insert>
+
+</mapper>
