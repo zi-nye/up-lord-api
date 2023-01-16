@@ -3,6 +3,7 @@ package uplord.uplordapi.dto;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import uplord.uplordapi.common.domain.UpdateDetect;
 
 import java.util.Collection;
 
@@ -11,7 +12,7 @@ import java.util.Collection;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO implements UserDetails {
+public class UserDTO implements UserDetails, UpdateDetect {
     private String userId;
     private String userName;
     private String userEmail;

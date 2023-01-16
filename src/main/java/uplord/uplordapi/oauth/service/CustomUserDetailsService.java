@@ -21,6 +21,6 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
         }
 
-        return dao.findUserBySnsId(username);
+        return dao.findUserByUserId(username);
     }
 }

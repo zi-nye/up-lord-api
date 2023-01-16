@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uplord.uplordapi.common.dao.MenuDAO">
+
+    <select id="findUseMenus" resultType="MenuDTO" parameterType="MenuDTO">
+        SELECT
+            MENU_CD,
+            HIR_MENU_CD,
+            MENU_NM,
+            MENU_URL,
+            MENU_ORD,
+            MENU_DESC,
+            MENU_PRT_YN,
+            USE_YN
+        FROM MENU
+        WHERE USE_YN = 'Y'
+    </select>
+
+</mapper>

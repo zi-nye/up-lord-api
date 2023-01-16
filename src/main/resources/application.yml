@@ -52,5 +52,6 @@ kakao:
   redirect-url: "http://localhost:3000/oauth"
 
 jwt:
-  secret-key: "ZI-NYE-CHUNG-CHUNG"
-
+  header: "Authorization"
+  secret-key: "ZINYECHUNGCHUNGDLQSLEKZINYECHUNGCHUNGDLQSLEK"
+  token-validity-in-seconds: 1800000
