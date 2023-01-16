@@ -1,10 +1,10 @@
-package uplord.uplordapi.sysManange.service.impl;
+package uplord.uplordapi.sysManage.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uplord.uplordapi.dto.LoginHistoryDTO;
-import uplord.uplordapi.sysManange.dao.LoginHistoryDAO;
-import uplord.uplordapi.sysManange.service.LoginHistoryService;
+import uplord.uplordapi.sysManage.dao.LoginHistoryDAO;
+import uplord.uplordapi.sysManage.service.LoginHistoryService;
 
 import java.util.List;
 
