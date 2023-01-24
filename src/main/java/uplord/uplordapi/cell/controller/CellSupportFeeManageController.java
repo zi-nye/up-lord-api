@@ -13,6 +13,4 @@ public class CellSupportFeeManageController {
 
     private final CellSupportFeeManageService service;
 
-    @GetMapping
-    public
 }
