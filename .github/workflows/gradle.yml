@@ -56,4 +56,4 @@ jobs:
         aws s3 cp \ 
         --region ap-northeast-2 \ 
         --acl private \ 
-    ./springbootcicdbuket.zip s3://springbootcicdbuket/
+        ./springbootcicdbuket.zip s3://springbootcicdbuket/
