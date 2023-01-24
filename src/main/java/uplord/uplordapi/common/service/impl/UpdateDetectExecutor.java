@@ -7,7 +7,6 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uplord.uplordapi.auth.service.impl.HttpHelper;
-import uplord.uplordapi.common.JwtTokenProvider;
 import uplord.uplordapi.common.dao.UpdateDetectDAO;
 import uplord.uplordapi.dto.UpdateDetectDTO;
 import uplord.uplordapi.util.ThreadUtil;
