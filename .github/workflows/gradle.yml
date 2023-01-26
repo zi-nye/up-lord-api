@@ -57,3 +57,4 @@ jobs:
         --region ap-northeast-2 \
         --acl private \
         ./springbootcicdbuket.zip s3://springbootcicdbuket/
+        aws s3 cp s3://aws-codedeploy-ap-northeast-2/latest/install . --region ap-northeast-2
