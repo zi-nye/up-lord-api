@@ -57,4 +57,16 @@ jobs:
         --region ap-northeast-2 \
         --acl private \
         ./springbootcicdbuket.zip s3://springbootcicdbuket/
-        aws s3 cp s3://aws-codedeploy-ap-northeast-2/latest/install . --region ap-northeast-2
+        
+    # Deploy
+    - name: Deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        aws deploy create-deployment \
+        --application-name springboot-intro \
+        --deployment-group-name springboot-deploy-group \
+        --file-exists-behavior OVERWRITE \
+        --s3-location bucket=springbootcicdbuket,bundleType=zip,key=springbootcicdbuket.zip \
+        --region ap-northeast-2
