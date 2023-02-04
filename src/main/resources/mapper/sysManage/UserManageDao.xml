@@ -21,15 +21,7 @@
 
     <update id="update" parameterType="UserDTO" >
         UPDATE USER SET
-          USER_PHONE = #{userPhone}
-          , USER_BIRTH = #{userBirth}
-          , USER_NICKNAME = #{userNickname}
-          , GENDER = #{gender}
-          , SNS_TYPE = #{snsType}
-          , SNS_ID = #{snsId}
-          , AUTH_CD = #{authCd}
-          , CELL_CD = #{cellCd}
-          , USE_YN = #{useYn}
+          USE_YN = #{useYn}
         WHERE USER_ID = #{userId}
     </update>
 
