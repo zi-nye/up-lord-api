@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth/kakao").permitAll()
                 .anyRequest().authenticated()
 
+
                 /**JwtSecurityConfig 적용 */
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
