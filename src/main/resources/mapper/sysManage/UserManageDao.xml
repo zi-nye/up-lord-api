@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uplord.uplordapi.sysManage.dao.UserManageDAO">
-    <select id="findList" parameterType="UserDTO" resultType="UserDTO">
-       SELECT USER_ID
-            , USER_ID
-            , USER_NAME
-            , USER_EMAIL
-            , PASSWORD
-            , USER_PHONE
-            , USER_BIRTH
-            , USER_NICKNAME
-            , GENDER
-            , SNS_TYPE
-            , SNS_ID
-            , AUTH_CD
-            , CELL_CD
-            , USE_YN
-       FROM USER
-     </select>
+  <select id="findList" resultType="UserDTO">
+    SELECT USER_ID
+         , USER_NAME
+         , USER_EMAIL
+         , PASSWORD
+         , USER_PHONE
+         , USER_BIRTH
+         , USER_NICKNAME
+         , GENDER
+         , SNS_TYPE
+         , SNS_ID
+         , AUTH_CD
+         , CELL_CD
+         , USE_YN
+    FROM USER
+  </select>
 
-    <update id="update" parameterType="UserDTO" >
-        UPDATE USER SET
-          USE_YN = #{useYn}
-        WHERE USER_ID = #{userId}
-    </update>
-
+  <update id="update" parameterType="UserDTO">
+      UPDATE USER
+      SET USE_YN = #{item.useYn}
+      WHERE USER_ID = #{item.userId}
+  </update>
 </mapper>

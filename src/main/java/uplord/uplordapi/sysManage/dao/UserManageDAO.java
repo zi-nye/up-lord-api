@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserManageDAO {
-    List<UserDTO> findList(UserDTO param);
+    List<UserDTO> findList();
 
-    void update(UserDTO param);
+    int update(UserDTO user);
 }

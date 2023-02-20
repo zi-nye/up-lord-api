@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uplord.uplordapi.common.model.CommonResponse;
 import uplord.uplordapi.dto.UserDTO;
+import uplord.uplordapi.dto.UserUpdateResultDTO;
 import uplord.uplordapi.sysManage.service.UserManageService;
 
 import java.util.List;
@@ -16,13 +17,12 @@ public class UserManageController {
     private final UserManageService service;
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> findList(UserDTO param){
-        return ResponseEntity.ok(service.findList(param));
+    public ResponseEntity<List<UserDTO>> findList(){
+        return ResponseEntity.ok(service.findList());
     }
 
     @PutMapping
-    public ResponseEntity<CommonResponse> update(@RequestBody UserDTO param){
-        service.update(param);
-        return ResponseEntity.ok(new CommonResponse());
+    public ResponseEntity<List<UserUpdateResultDTO>> update(@RequestBody List<UserDTO> param) throws Exception {
+        return ResponseEntity.ok(service.update(param));
     }
 }
