@@ -21,7 +21,7 @@
 
   <update id="update" parameterType="UserDTO">
       UPDATE USER
-      SET USE_YN = #{item.useYn}
-      WHERE USER_ID = #{item.userId}
+      SET USE_YN = #{useYn}
+      WHERE USER_ID = #{userId}
   </update>
 </mapper>

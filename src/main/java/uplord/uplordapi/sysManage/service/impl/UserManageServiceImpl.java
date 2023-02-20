@@ -31,10 +31,12 @@ public class UserManageServiceImpl implements UserManageService {
         }
 
         List<UserUpdateResultDTO> updateResults = new ArrayList<>();
-        userList.forEach(user -> updateResults.add(UserUpdateResultDTO.builder()
-                                                      .userId(user.getUserId())
-                                                      .useYn(user.getUseYn())
-                                                      .build()));
+        userList.forEach(user -> {
+            updateResults.add(UserUpdateResultDTO.builder()
+                                                 .userId(user.getUserId())
+                                                 .useYn(user.getUseYn())
+                                                 .build());
+        });
         return updateResults;
     }
 }
