@@ -134,5 +134,6 @@ public class UserManageControllerTest {
                             .userName("고예성")
                             .useYn("Y")
                             .build());
+
     }
 }
