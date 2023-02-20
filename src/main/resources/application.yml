@@ -16,9 +16,9 @@ spring:
     ansi:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://up-lord.cqtukfcectyc.ap-northeast-1.rds.amazonaws.com:3306/UP_LORD
-    username: admin
-    password: sKdCp8ATIttDWmLOpPem
+    url: jdbc:mysql://42e48f63-395c-4711-bd02-a028a5f53fbc.external.kr1.mysql.rds.nhncloudservice.com:10753
+    username: chungchung
+    password: fjfuAE}xP3WoPn
 server:
   servlet:
     session:
