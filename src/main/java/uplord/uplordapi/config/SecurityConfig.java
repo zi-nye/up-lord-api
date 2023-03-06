@@ -18,6 +18,7 @@ import uplord.uplordapi.common.filter.JwtFilter;
 @RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     private final JwtAuthenticationEntryPoint jwtAtuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private final JwtFilter jwtFilter;

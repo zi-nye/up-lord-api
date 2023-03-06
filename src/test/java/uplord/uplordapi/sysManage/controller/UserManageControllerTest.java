@@ -89,28 +89,28 @@ public class UserManageControllerTest {
         assertThat(json).contains("\"userId\":\"hst@gmail.com\",\"useYn\":null");
     }
 
-    @Test
-    @DisplayName("사용자 권한 업데이트 실패 컨트롤러 테스트")
-    void updateFailControllerTest() throws Exception {
-        // 업데이트하려는 데이터가 없는데 업데이트하는 경우
-        // given
-        List<UserDTO> updateRequest = makeUserList();
-        updateUseYn(updateRequest);
-        List<UserUpdateResultDTO> response
-                = List.of(UserUpdateResultDTO.builder()
-                                             .userId("yeasung67@gmail.com")
-                                             .useYn("Y")
-                                             .build(),
-                          UserUpdateResultDTO.builder()
-                                             .userId("hst@gmail.com")
-                                             .useYn(null)
-                                             .build()
-        );
-        doReturn(response).when(userManageService).update(anyList());
-        // when
-
-        // then
-    }
+//    @Test
+//    @DisplayName("사용자 권한 업데이트 실패 컨트롤러 테스트")
+//    void updateFailControllerTest() throws Exception {
+//        // 업데이트하려는 데이터가 없는데 업데이트하는 경우
+//        // given
+//        List<UserDTO> updateRequest = makeUserList();
+//        updateUseYn(updateRequest);
+//        List<UserUpdateResultDTO> response
+//                = List.of(UserUpdateResultDTO.builder()
+//                                             .userId("yeasung67@gmail.com")
+//                                             .useYn("Y")
+//                                             .build(),
+//                          UserUpdateResultDTO.builder()
+//                                             .userId("hst@gmail.com")
+//                                             .useYn(null)
+//                                             .build()
+//        );
+//        doReturn(response).when(userManageService).update(anyList());
+//        // when
+//
+//        // then
+//    }
 
     private List<UserDTO> makeUserList() {
         List<UserDTO> users = new ArrayList<>();
