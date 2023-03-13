@@ -16,9 +16,9 @@ spring:
     ansi:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/UP_LORD?characterEncoding=utf8&serverTimezone=UTC&allowMultiQueries=true
+    url: jdbc:mysql://133.186.215.128:3306/UP_LORD?characterEncoding=utf8&serverTimezone=UTC&allowMultiQueries=true
     username: root
-    password:
+    password: h%7t*Feg&%
 server:
   servlet:
     session:
