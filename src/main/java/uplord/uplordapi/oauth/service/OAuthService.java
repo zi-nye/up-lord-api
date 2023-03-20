@@ -18,6 +18,7 @@ import uplord.uplordapi.dto.UserDTO;
 
 import java.io.*;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -81,18 +82,22 @@ public class OAuthService {
         KaKaoProperties kakaoProperties = kakaoUserInfo.getProperties();
 
         // 등록된 유저가 아니라면, 신규 삽입
-        if (dao.findUserBySnsId(snsId) == null) {
-            UserDTO user = UserDTO.builder()
-                    .snsType("KAKAO")
-                    .snsId(snsId)
-                    .userEmail(kakaoAccount.getEmail())
-                    .userName(kakaoProperties.getNickname())
-                    .build();
-
-            dao.createUser(user);
+        UserDTO user = Optional.ofNullable(dao.findUserBySnsId(snsId))
+                .orElseGet(() -> {
+                UserDTO newUser = UserDTO.builder()
+                        .snsType("KAKAO")
+                        .snsId(snsId)
+                        .userEmail(kakaoAccount.getEmail())
+                        .userName(kakaoProperties.getNickname())
+                        .build();
+                    dao.createUser(newUser);
+                    return newUser;
+                });
+        if(user.getUseYn().equals("Y")){
+            return tokenProvider.createToken(user.getUserId());
+        }else{
+            // TODO 좋은 코드일지 의문
+            throw new RuntimeException("권한이 없는 사용자이기 때문에, 토큰을 제공할 수 없습니다.");
         }
-
-        UserDTO user = dao.findUserBySnsId(snsId);
-        return tokenProvider.createToken(user.getUserId());
     }
 }
