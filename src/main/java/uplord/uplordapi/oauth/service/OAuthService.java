@@ -80,7 +80,6 @@ public class OAuthService {
         String snsId = kakaoUserInfo.getId().toString();
         KakaoAccount kakaoAccount = kakaoUserInfo.getKakao_account();
         KaKaoProperties kakaoProperties = kakaoUserInfo.getProperties();
-
         // 등록된 유저가 아니라면, 신규 삽입
         UserDTO user = Optional.ofNullable(dao.findUserBySnsId(snsId))
                 .orElseGet(() -> {
@@ -93,7 +92,7 @@ public class OAuthService {
                     dao.createUser(newUser);
                     return newUser;
                 });
-        if(user.getUseYn().equals("Y")){
+        if(user.getUseYn() != null && user.getUseYn().equals("Y")){
             return tokenProvider.createToken(user.getUserId());
         }else{
             // TODO 좋은 코드일지 의문
