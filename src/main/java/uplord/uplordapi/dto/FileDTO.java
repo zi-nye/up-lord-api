@@ -1,0 +1,15 @@
+package uplord.uplordapi.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class FileDTO {
+
+    private String name;
+    private String filePath;
+    private String uploadedAt;
+}
