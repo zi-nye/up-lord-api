@@ -5,7 +5,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("storage")
 public class StorageProperties {
 
-    private String location = "../uploaded-files";
+    private String location;
+
+    public StorageProperties() {
+        this.location = System.getProperty("user.dir");
+    }
 
     public String getLocation() {
         return location;

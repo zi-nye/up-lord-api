@@ -7,8 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface FileUploadService {
 
-    void init();
-
     void store(MultipartFile file);
 
     Stream<Path> loadAll();
@@ -16,4 +14,6 @@ public interface FileUploadService {
     Path load(String fileName);
 
     Resource loadAsResource(String fileName);
+
+    public void changeUploadFolderLocation(String folderName);
 }

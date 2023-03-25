@@ -1,6 +1,6 @@
 package uplord.uplordapi.fileUpload.controller;
 
-import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import uplord.uplordapi.fileUpload.exception.StorageFileNotFoundException;
 import uplord.uplordapi.fileUpload.service.FileUploadService;
 
 @RestController
-@RequestMapping("/meetingDocs")
+@RequestMapping("/meeting")
 public class FileUploadController {
 
     private final FileUploadService fileUploadService;
@@ -32,7 +32,7 @@ public class FileUploadController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<String>> listUploadedFiles() throws IOException {
+    public ResponseEntity<List<String>> listUploadedFiles() {
         try {
             List<String> filesURL = fileUploadService
                     .loadAll()
@@ -69,7 +69,10 @@ public class FileUploadController {
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
             fileUploadService.store(file);
-            return ResponseEntity.ok("filename: " + file.getName() + ", status: 200");
+            //todo: 로깅구현체로 로깅하기
+            System.out.println(
+                    LocalDateTime.now() + "에 " + file.getOriginalFilename() + "를 업로드하는데 성공했습니다.");
+            return ResponseEntity.ok("filename: " + file.getOriginalFilename() + ", status: 200");
         } catch (StorageException e) {
             // todo: 로깅구현체로 로깅하기
             System.out.println(e.getMessage());
