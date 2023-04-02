@@ -21,7 +21,7 @@ import uplord.uplordapi.fileUpload.exception.StorageFileNotFoundException;
 import uplord.uplordapi.fileUpload.service.FileUploadService;
 
 @RestController
-@RequestMapping("/meeting")
+@RequestMapping("/files")
 public class FileUploadController {
 
     private final FileUploadService fileUploadService;
@@ -31,7 +31,7 @@ public class FileUploadController {
         this.fileUploadService = fileUploadService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<String>> listUploadedFiles() {
         try {
             List<String> filesURL = fileUploadService
@@ -50,7 +50,7 @@ public class FileUploadController {
         }
     }
 
-    @GetMapping("/files/{filename:.+}")
+    @GetMapping("/{filename:.+}")
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
         try {
             Resource file = fileUploadService.loadAsResource(filename);
@@ -65,7 +65,7 @@ public class FileUploadController {
         }
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
             fileUploadService.store(file);

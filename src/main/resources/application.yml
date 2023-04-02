@@ -19,6 +19,12 @@ spring:
     url: jdbc:mysql://133.186.215.128:3306/UP_LORD?characterEncoding=utf8&serverTimezone=UTC&allowMultiQueries=true
     username: root
     password: h%7t*Feg&%
+  mvc:
+    # spring fox 3.0부터 엑츄에이터 때문에? ant_path_matcher를 사용해야 한다네요
+    # 참고 링크
+    # https://stackoverflow.com/questions/72465369/upgraded-spring-boot-to-2-7-0-failed-to-start-bean-documentationpluginsbootstr
+    pathmatch:
+      matching-strategy: ant_path_matcher
 server:
   servlet:
     session:
@@ -55,3 +61,4 @@ jwt:
   header: "Authorization"
   secret-key: "ZINYECHUNGCHUNGDLQSLEKZINYECHUNGCHUNGDLQSLEK"
   token-validity-in-seconds: 1800000
+
