@@ -48,7 +48,7 @@ server:
 
 mybatis:
   mapper-locations: mapper/**/*.xml
-  type-aliases-package: uplord.uplordapi.dto , uplord.uplordapi.**.vo
+  type-aliases-package: uplord.uplordapi.dto , uplord.uplordapi.**.vo, uplord.uplordapi.domain.**.dto, uplord.uplordapi.domain.**.entity
   configuration:
     map-underscore-to-camel-case: true
     jdbc-type-for-null: varchar
