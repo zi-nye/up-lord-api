@@ -18,7 +18,7 @@ import java.util.List;
 // dto(view - controller - service - dao ) 간에 객체 파라미터
 // entity - DB 컬럼이랑 매칭된다.
 // 등으로 구성된다.
-@Tag(name = "출석부 API")
+@Tag(name = "출석 API")
 @RestController
 @RequestMapping("attendance")
 @RequiredArgsConstructor
@@ -26,16 +26,22 @@ public class AttendanceController {
     final private AttendanceReadService attendanceReadService;
     final private AttendanceWriteService attendanceWriteService;
 
-    @Operation(summary = "출석부 등록")
-    @PostMapping("/")
-    public ResponseEntity<AttendanceResponseDto> register(@RequestBody RegisterAttendanceCommand command) {
-        var attendance = attendanceWriteService.create(command);
-        return ResponseEntity.ok(attendanceReadService.toDto(attendance));
+    @Operation(summary = "출석 조회")
+    @GetMapping("/list")
+    public ResponseEntity<List<AttendanceResponseDto>> getAttendances(@RequestBody AttendanceRequestDto attendanceRequestDto) {
+        return ResponseEntity.ok(attendanceReadService.findAttendanceByRequestDto(attendanceRequestDto));
     }
-    @Operation(summary = "출석부 조회")
-    @GetMapping("/")
-    public ResponseEntity<List<AttendanceResponseDto>> getAttendance(@RequestBody AttendanceRequestDto attendanceRequestDto) {
-        return ResponseEntity.ok(attendanceReadService.getAttendance(attendanceRequestDto));
+
+    @Operation(summary = "출석 하기")
+    @PostMapping("/")
+    public ResponseEntity<Boolean> create(@RequestBody List<RegisterAttendanceCommand> command) {
+        return ResponseEntity.ok(attendanceWriteService.createAttendance(command));
+    }
+
+    @Operation(summary = "출석 취소")
+    @PutMapping("/")
+    public ResponseEntity<Boolean> cancel(@RequestBody List<AttendanceRequestDto> command) {
+        return ResponseEntity.ok(attendanceWriteService.cancelAttendance(command));
     }
 
 }

@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uplord.uplordapi.domain.attendance.dao.AttendanceDao">
+    <update id="updateAttendanceToYN" parameterType="AttendanceRequestDto">
+        UPDATE ATTENDANCE
+        SET ATTENDANCE_YN = #{attendanceYn}
+        WHERE ATTENDANCE_ID = #{attendanceId}
+    </update>
 
-    <select id="getAttendance">
+    <select id="findAttendanceByRequestDto" parameterType="AttendanceRequestDto" resultType="Attendance">
+        SELECT
+            M.MEMBER_IDX
+             , M.MEMBER_NAME
+             , M.NTH_YEAR
+             , M.CELL_NAME
+             , M.GENDER
+             , A.ATTENDANCE_YN
+             , A.MEMO
+        FROM MEMBER M
+        JOIN ATTENDANCE A on M.MEMBER_IDX = A.MEMBER_IDX
+        WHERE USE_YN = 'Y'
     </select>
 
-    <insert id="create" parameterType="RegisterAttendanceCommand">
+    <insert id="createAttendance" parameterType="RegisterAttendanceCommand">
         INSERT INTO ATTENDANCE (
             MEMBER_IDX
             , WRITE_DATE
             , MEMO
             , ATTENDANCE_YN
-            , COMPLETE_YN
             , CREATED_UID
             , CREATED_AT
             , CREATED_IP
@@ -24,7 +39,6 @@
             , #{writeDate}
             , #{memo}
             , #{attendanceYn}
-            , #{completeYn}
             , #{createdUid}
             , #{createdAt}
             , #{createdIp}
@@ -33,4 +47,5 @@
             , #{updatedIp}
         )
     </insert>
+
 </mapper>

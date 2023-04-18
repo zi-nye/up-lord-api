@@ -2,19 +2,19 @@ package uplord.uplordapi.domain.attendance.application;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import uplord.uplordapi.domain.attendance.dao.AttendanceDao;
 import uplord.uplordapi.domain.attendance.dto.AttendanceRequestDto;
 import uplord.uplordapi.domain.attendance.dto.AttendanceResponseDto;
 import uplord.uplordapi.domain.attendance.entity.Attendance;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class AttendanceReadService {
 
-    public List<AttendanceResponseDto> getAttendance(AttendanceRequestDto attendanceRequestDto) {
-        return null;
-    }
+    final private AttendanceDao attendanceDao;
 
     public AttendanceResponseDto toDto(Attendance attendance) {
         return new AttendanceResponseDto(
@@ -22,7 +22,14 @@ public class AttendanceReadService {
                 attendance.getMemberIdx(),
                 attendance.getAttendanceYn(),
                 attendance.getWriteDate(),
-                attendance.getMemo(),
-                attendance.getCompleteYn());
+                attendance.getMemo());
+    }
+
+    public List<AttendanceResponseDto> findAttendanceByRequestDto(AttendanceRequestDto attendanceRequestDto) {
+        var attendances = attendanceDao.findAttendanceByRequestDto(attendanceRequestDto);
+
+        return attendances.stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 }
