@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uplord.uplordapi.domain.attendance.dao.AttendanceDao">
-    <update id="updateAttendanceToYN" parameterType="AttendanceRequestDto">
+    <update id="updateAttendanceToYN" parameterType="AttendanceDto">
         UPDATE ATTENDANCE
         SET ATTENDANCE_YN = #{attendanceYn}
         WHERE ATTENDANCE_ID = #{attendanceId}
     </update>
 
-    <select id="findAttendanceByRequestDto" parameterType="AttendanceRequestDto" resultType="Attendance">
+    <select id="findAttendanceByRequestDto" parameterType="AttendanceDto" resultType="Attendance">
         SELECT
              A.ATTENDANCE_ID
              , M.MEMBER_NAME
@@ -23,7 +23,7 @@
         AND ATTENDANCE_DATE = #{attendnaceDate}
     </select>
 
-    <insert id="createAttendance" parameterType="RegisterAttendanceCommand">
+    <insert id="createAttendance" parameterType="Attendance">
         INSERT INTO ATTENDANCE(
             MEMBER_IDX
             ,ATTENDANCE_DATE
@@ -37,10 +37,10 @@
             ,UPDATED_IP
         )
         VALUES (
-           MEMBER_IDX
+           #{memberIdx}
            , #{attendanceDate}
-           , NULL
-           , NULL
+           , #{memo}
+           , #{attendanceYn}
            , #{createUid}
            , #{createAt}
            , #{createIp}

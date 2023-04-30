@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uplord.uplordapi.domain.attendance.application.AttendanceReadService;
 import uplord.uplordapi.domain.attendance.application.AttendanceWriteService;
-import uplord.uplordapi.domain.attendance.dto.AttendanceRequestDto;
+import uplord.uplordapi.domain.attendance.dto.AttendanceDto;
 import uplord.uplordapi.domain.attendance.dto.AttendanceResponseDto;
 import uplord.uplordapi.domain.attendance.dto.RegisterAttendanceCommand;
 
@@ -28,26 +28,25 @@ public class AttendanceController {
 
     @Operation(summary = "출석 조회")
     @GetMapping("/list")
-    public ResponseEntity<List<AttendanceResponseDto>> getAttendances(@RequestBody AttendanceRequestDto requestDto) {
+    public ResponseEntity<List<AttendanceResponseDto>> getAttendances(@RequestBody AttendanceDto requestDto) {
         return ResponseEntity.ok(attendanceReadService.findAttendanceByRequestDto(requestDto));
     }
 
     @Operation(summary = "출석부 등록")
     @PostMapping("/register")
     public ResponseEntity<List<AttendanceResponseDto>> register(@RequestBody RegisterAttendanceCommand requestDto) {
-        var attendanceIdx = attendanceWriteService.registerAttendance(requestDto);
-        return ResponseEntity.ok();
+        return ResponseEntity.ok(attendanceWriteService.registerAttendance(requestDto));
     }
 
     @Operation(summary = "출석 하기")
     @PutMapping("/update")
-    public ResponseEntity<Boolean> update(@RequestBody List<AttendanceRequestDto> requestDtos) {
+    public ResponseEntity<Boolean> update(@RequestBody List<AttendanceDto> requestDtos) {
         return ResponseEntity.ok(attendanceWriteService.updateAttendance(requestDtos));
     }
 
     @Operation(summary = "출석 취소")
     @PutMapping("/cancel")
-    public ResponseEntity<Boolean> cancel(@RequestBody List<AttendanceRequestDto> requestDtos) {
+    public ResponseEntity<Boolean> cancel(@RequestBody List<AttendanceDto> requestDtos) {
         return ResponseEntity.ok(attendanceWriteService.cancelAttendance(requestDtos));
     }
 }

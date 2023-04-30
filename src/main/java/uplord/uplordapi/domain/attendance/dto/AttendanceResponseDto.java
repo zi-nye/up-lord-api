@@ -8,15 +8,15 @@ import java.time.LocalDate;
 public class AttendanceResponseDto {
     final private Long attendanceId;
     final private Long memberIdx;
-    final private AttendanceStatus attendanceYn;
-    final private LocalDate writeDate;
+    final private Character attendanceYn;
+    final private LocalDate attendanceDate;
     final private String memo;
     @Builder
-    public AttendanceResponseDto(Long attendanceId, Long memberIdx, AttendanceStatus attendanceYn, LocalDate writeDate, String memo) {
+    public AttendanceResponseDto(Long attendanceId, Long memberIdx, Character attendanceYn, LocalDate attendanceDate, String memo) {
         this.attendanceId = attendanceId;
         this.memberIdx = memberIdx;
         this.attendanceYn = attendanceYn;
-        this.writeDate = writeDate;
+        this.attendanceDate = attendanceDate;
         this.memo = memo;
     }
 }

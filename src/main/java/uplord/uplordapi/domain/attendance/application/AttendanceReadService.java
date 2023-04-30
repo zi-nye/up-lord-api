@@ -3,7 +3,7 @@ package uplord.uplordapi.domain.attendance.application;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uplord.uplordapi.domain.attendance.dao.AttendanceDao;
-import uplord.uplordapi.domain.attendance.dto.AttendanceRequestDto;
+import uplord.uplordapi.domain.attendance.dto.AttendanceDto;
 import uplord.uplordapi.domain.attendance.dto.AttendanceResponseDto;
 import uplord.uplordapi.domain.attendance.dto.RegisterAttendanceCommand;
 import uplord.uplordapi.domain.attendance.entity.Attendance;
@@ -26,14 +26,11 @@ public class AttendanceReadService {
                 attendance.getMemo());
     }
 
-    public List<AttendanceResponseDto> findAttendanceByRequestDto(AttendanceRequestDto attendanceRequestDto) {
-        var attendances = attendanceDao.findAttendanceByRequestDto(attendanceRequestDto);
+    public List<AttendanceResponseDto> findAttendanceByRequestDto(AttendanceDto AttendanceDto) {
+        var attendances = attendanceDao.findAttendanceByRequestDto(AttendanceDto);
 
         return attendances.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
-    }
-
-    public Object registerAttendance(RegisterAttendanceCommand requestDto) {
     }
 }
