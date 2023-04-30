@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uplord.uplordapi.domain.member.dao.MemberDao">
+
+    <select id="findAllMemberIdx" resultType="Long">
+        SELECT MEMBER_IDX
+        FROM UP_LORD.MEMBER
+        WHERE USE_YN = 'Y'
+    </select>
+
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uplord.uplordapi.domain.attendance.dao.AttendanceDao">
+    <update id="updateAttendanceToYN" parameterType="AttendanceDto">
+        UPDATE ATTENDANCE
+        SET ATTENDANCE_YN = #{attendanceYn}
+        WHERE ATTENDANCE_ID = #{attendanceId}
+    </update>
+
+    <select id="findAttendanceByRequestDto" parameterType="AttendanceDto" resultType="Attendance">
+        SELECT
+             A.ATTENDANCE_ID
+             , M.MEMBER_NAME
+             , M.NTH_YEAR
+             , M.CELL_NAME
+             , M.GENDER
+             , A.ATTENDANCE_YN
+             , A.MEMO
+             , A.ATTENDANCE_DATE
+        FROM ATTENDANCE A
+        JOIN MEMBER M on M.MEMBER_IDX = A.MEMBER_IDX
+        WHERE USE_YN = 'Y'
+        AND ATTENDANCE_DATE = #{attendnaceDate}
+    </select>
+
+    <insert id="createAttendance" parameterType="Attendance">
+        INSERT INTO ATTENDANCE(
+            MEMBER_IDX
+            ,ATTENDANCE_DATE
+            ,MEMO
+            ,ATTENDANCE_YN
+            ,CREATED_UID
+            ,CREATED_AT
+            ,CREATED_IP
+            ,UPDATED_UID
+            ,UPDATED_AT
+            ,UPDATED_IP
+        )
+        VALUES (
+           #{memberIdx}
+           , #{attendanceDate}
+           , #{memo}
+           , #{attendanceYn}
+           , #{createUid}
+           , #{createAt}
+           , #{createIp}
+           , #{updateUid}
+           , #{updateAt}
+           , #{updateIp}
+       )
+    </insert>
+
+</mapper>
