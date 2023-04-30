@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class Attendance {
     final private Long attendanceId;
     final private Long memberIdx;
-    final private LocalDate writeDate;
+    final private LocalDate attendanceDate;
     final private String memo;
     final private AttendanceStatus attendanceYn;
     final private String createdUid;
@@ -22,10 +22,10 @@ public class Attendance {
     final private String updatedIp;
 
     @Builder
-    public Attendance(Long attendanceId, Long memberIdx, LocalDate writeDate, String memo, AttendanceStatus attendanceYn,  String createdUid, LocalDateTime createdAt, String createdIp, String updatedUid, LocalDateTime updatedAt, String updatedIp) {
+    public Attendance(Long attendanceId, Long memberIdx, LocalDate attendanceDate, String memo, AttendanceStatus attendanceYn,  String createdUid, LocalDateTime createdAt, String createdIp, String updatedUid, LocalDateTime updatedAt, String updatedIp) {
         this.attendanceId = attendanceId;
         this.memberIdx = memberIdx;
-        this.writeDate = writeDate;
+        this.attendanceDate = attendanceDate;
         this.memo = memo;
         this.attendanceYn = attendanceYn;
         this.createdUid = createdUid;

@@ -28,20 +28,26 @@ public class AttendanceController {
 
     @Operation(summary = "출석 조회")
     @GetMapping("/list")
-    public ResponseEntity<List<AttendanceResponseDto>> getAttendances(@RequestBody AttendanceRequestDto attendanceRequestDto) {
-        return ResponseEntity.ok(attendanceReadService.findAttendanceByRequestDto(attendanceRequestDto));
+    public ResponseEntity<List<AttendanceResponseDto>> getAttendances(@RequestBody AttendanceRequestDto requestDto) {
+        return ResponseEntity.ok(attendanceReadService.findAttendanceByRequestDto(requestDto));
+    }
+
+    @Operation(summary = "출석부 등록")
+    @PostMapping("/register")
+    public ResponseEntity<List<AttendanceResponseDto>> register(@RequestBody RegisterAttendanceCommand requestDto) {
+        var attendanceIdx = attendanceWriteService.registerAttendance(requestDto);
+        return ResponseEntity.ok();
     }
 
     @Operation(summary = "출석 하기")
-    @PostMapping("/")
-    public ResponseEntity<Boolean> create(@RequestBody List<RegisterAttendanceCommand> command) {
-        return ResponseEntity.ok(attendanceWriteService.createAttendance(command));
+    @PutMapping("/update")
+    public ResponseEntity<Boolean> update(@RequestBody List<AttendanceRequestDto> requestDtos) {
+        return ResponseEntity.ok(attendanceWriteService.updateAttendance(requestDtos));
     }
 
     @Operation(summary = "출석 취소")
-    @PutMapping("/")
-    public ResponseEntity<Boolean> cancel(@RequestBody List<AttendanceRequestDto> command) {
-        return ResponseEntity.ok(attendanceWriteService.cancelAttendance(command));
+    @PutMapping("/cancel")
+    public ResponseEntity<Boolean> cancel(@RequestBody List<AttendanceRequestDto> requestDtos) {
+        return ResponseEntity.ok(attendanceWriteService.cancelAttendance(requestDtos));
     }
-
 }

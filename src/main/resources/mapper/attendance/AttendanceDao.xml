@@ -9,43 +9,45 @@
 
     <select id="findAttendanceByRequestDto" parameterType="AttendanceRequestDto" resultType="Attendance">
         SELECT
-            M.MEMBER_IDX
+             A.ATTENDANCE_ID
              , M.MEMBER_NAME
              , M.NTH_YEAR
              , M.CELL_NAME
              , M.GENDER
              , A.ATTENDANCE_YN
              , A.MEMO
-        FROM MEMBER M
-        JOIN ATTENDANCE A on M.MEMBER_IDX = A.MEMBER_IDX
+             , A.ATTENDANCE_DATE
+        FROM ATTENDANCE A
+        JOIN MEMBER M on M.MEMBER_IDX = A.MEMBER_IDX
         WHERE USE_YN = 'Y'
+        AND ATTENDANCE_DATE = #{attendnaceDate}
     </select>
 
     <insert id="createAttendance" parameterType="RegisterAttendanceCommand">
-        INSERT INTO ATTENDANCE (
+        INSERT INTO ATTENDANCE(
             MEMBER_IDX
-            , WRITE_DATE
-            , MEMO
-            , ATTENDANCE_YN
-            , CREATED_UID
-            , CREATED_AT
-            , CREATED_IP
-            , UPDATED_UID
-            , UPDATED_AT
-            , UPDATED_IP
+            ,ATTENDANCE_DATE
+            ,MEMO
+            ,ATTENDANCE_YN
+            ,CREATED_UID
+            ,CREATED_AT
+            ,CREATED_IP
+            ,UPDATED_UID
+            ,UPDATED_AT
+            ,UPDATED_IP
         )
         VALUES (
-              #{memberIdx}
-            , #{writeDate}
-            , #{memo}
-            , #{attendanceYn}
-            , #{createdUid}
-            , #{createdAt}
-            , #{createdIp}
-            , #{updatedUid}
-            , #{updatedAt}
-            , #{updatedIp}
-        )
+           MEMBER_IDX
+           , #{attendanceDate}
+           , NULL
+           , NULL
+           , #{createUid}
+           , #{createAt}
+           , #{createIp}
+           , #{updateUid}
+           , #{updateAt}
+           , #{updateIp}
+       )
     </insert>
 
 </mapper>

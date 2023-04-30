@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import uplord.uplordapi.domain.attendance.dao.AttendanceDao;
 import uplord.uplordapi.domain.attendance.dto.AttendanceRequestDto;
 import uplord.uplordapi.domain.attendance.dto.AttendanceResponseDto;
+import uplord.uplordapi.domain.attendance.dto.RegisterAttendanceCommand;
 import uplord.uplordapi.domain.attendance.entity.Attendance;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class AttendanceReadService {
                 attendance.getAttendanceId(),
                 attendance.getMemberIdx(),
                 attendance.getAttendanceYn(),
-                attendance.getWriteDate(),
+                attendance.getAttendanceDate(),
                 attendance.getMemo());
     }
 
@@ -31,5 +32,8 @@ public class AttendanceReadService {
         return attendances.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public Object registerAttendance(RegisterAttendanceCommand requestDto) {
     }
 }
