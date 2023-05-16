@@ -63,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .antMatchers("/oauth/kakao").permitAll()
-                .anyRequest().authenticated()
+//                .anyRequest().authenticated()
 
                 /**JwtSecurityConfig 적용 */
                 .and()

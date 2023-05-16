@@ -2,16 +2,18 @@ package uplord.uplordapi.domain.attendance.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Getter
+@Setter
 public class AttendanceDto {
     private final Long attendanceId;
     private final Long memberIdx;
     private final LocalDate attendanceDate;
     private final String memo;
-    private final Character attendanceYn;
+    private Character attendanceYn;
     private final Long createdUid;
     private final LocalDateTime createdAt;
     private final String createdIp;
