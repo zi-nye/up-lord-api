@@ -4,12 +4,14 @@
     <update id="updateAttendanceToYN" parameterType="AttendanceDto">
         UPDATE ATTENDANCE
         SET ATTENDANCE_YN = #{attendanceYn}
-        WHERE ATTENDANCE_ID = #{attendanceId}
+        WHERE MEMBER_IDX = #{memberIdx}
+        AND ATTENDANCE_DATE = #{attendanceDate}
     </update>
 
-    <select id="findAttendanceByRequestDto" parameterType="AttendanceDto" resultType="Attendance">
+    <select id="findAttendanceByRequestDto" parameterType="AttendanceDto" resultType="AttendanceResponseDto">
         SELECT
              A.ATTENDANCE_ID
+             , A.MEMBER_IDX
              , M.MEMBER_NAME
              , M.NTH_YEAR
              , M.CELL_NAME
@@ -20,7 +22,7 @@
         FROM ATTENDANCE A
         JOIN MEMBER M on M.MEMBER_IDX = A.MEMBER_IDX
         WHERE USE_YN = 'Y'
-        AND ATTENDANCE_DATE = #{attendnaceDate}
+        AND ATTENDANCE_DATE = #{attendanceDate}
     </select>
 
     <insert id="createAttendance" parameterType="Attendance">
@@ -41,12 +43,12 @@
            , #{attendanceDate}
            , #{memo}
            , #{attendanceYn}
-           , #{createUid}
-           , #{createAt}
-           , #{createIp}
-           , #{updateUid}
-           , #{updateAt}
-           , #{updateIp}
+           , #{createdUid}
+           , #{createdAt}
+           , #{createdIp}
+           , #{updatedUid}
+           , #{updatedAt}
+           , #{updatedIp}
        )
     </insert>
 

@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 import uplord.uplordapi.domain.attendance.dao.AttendanceDao;
 import uplord.uplordapi.domain.attendance.dto.AttendanceDto;
 import uplord.uplordapi.domain.attendance.dto.AttendanceResponseDto;
-import uplord.uplordapi.domain.attendance.dto.RegisterAttendanceCommand;
 import uplord.uplordapi.domain.attendance.entity.Attendance;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,20 +17,19 @@ public class AttendanceReadService {
 
     final private AttendanceDao attendanceDao;
 
-    public AttendanceResponseDto toDto(Attendance attendance) {
-        return new AttendanceResponseDto(
-                attendance.getAttendanceId(),
-                attendance.getMemberIdx(),
-                attendance.getAttendanceYn(),
-                attendance.getAttendanceDate(),
-                attendance.getMemo());
+    public AttendanceDto toDto(Attendance attendance) {
+        return AttendanceDto.builder()
+                .attendanceId(attendance.getAttendanceId())
+                .memberIdx(attendance.getMemberIdx())
+                .attendanceYn(attendance.getAttendanceYn())
+                .attendanceDate(attendance.getAttendanceDate())
+                .memo(attendance.getMemo())
+                .build();
     }
 
-    public List<AttendanceResponseDto> findAttendanceByRequestDto(AttendanceDto AttendanceDto) {
-        var attendances = attendanceDao.findAttendanceByRequestDto(AttendanceDto);
+    public List<AttendanceResponseDto> findAttendanceByRequestDto(AttendanceDto attendanceDto) {
+        var attendances = attendanceDao.findAttendanceByRequestDto(attendanceDto);
 
-        return attendances.stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
+        return attendances;
     }
 }
