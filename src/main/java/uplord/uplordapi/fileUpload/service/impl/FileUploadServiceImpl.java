@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -26,8 +27,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
     @Autowired
     public FileUploadServiceImpl(StorageProperties properties) {
-        this.rootLocation = Paths.get(properties.getLocation())
-                                 .getParent();
+        this.rootLocation = Paths.get(properties.getLocation()).getParent();
         init();
     }
 
@@ -35,11 +35,10 @@ public class FileUploadServiceImpl implements FileUploadService {
     public void store(MultipartFile file) {
         try {
             isEmptyFile(file);
-            Path destinationFile =
-                    this.rootLocation.resolve(folderName)
-                                     .resolve(Paths.get(file.getOriginalFilename()))
-                                     .normalize()
-                                     .toAbsolutePath();
+            Path destinationFile = this.rootLocation.resolve(folderName)
+                    .resolve(Paths.get(file.getOriginalFilename()))
+                    .normalize()
+                    .toAbsolutePath();
             // todo : 로깅구현체로 바꾸기
             System.out.println("다음 경로에 업로드를 진행합니다. : " + destinationFile);
             isCurrentDirectory(destinationFile, this.rootLocation);
@@ -54,8 +53,8 @@ public class FileUploadServiceImpl implements FileUploadService {
         try {
             Path targetLocation = this.rootLocation.resolve(folderName);
             return Files.walk(targetLocation, 1)
-                        .filter(path -> !path.equals(targetLocation))
-                        .map(targetLocation::relativize);
+                    .filter(path -> !path.equals(targetLocation))
+                    .map(targetLocation::relativize);
         } catch (IOException e) {
             throw new StorageException("[ERROR] 저장된 파일을 읽어오는데 실패했습니다.", e);
         }
@@ -75,7 +74,7 @@ public class FileUploadServiceImpl implements FileUploadService {
     @Override
     public Path load(String fileName) {
         return rootLocation.resolve(folderName)
-                           .resolve(fileName);
+                .resolve(fileName);
     }
 
     public void changeUploadFolderLocation(String folderName) {
@@ -98,7 +97,7 @@ public class FileUploadServiceImpl implements FileUploadService {
     private boolean isExistFolder(String folderName) throws IOException {
         try {
             return Files.walk(this.rootLocation, 1)
-                        .anyMatch(path -> path.equals(this.rootLocation.resolve(folderName)));
+                    .anyMatch(path -> path.equals(this.rootLocation.resolve(folderName)));
         } catch (IOException e) {
             throw new IOException(e);
         }
@@ -112,7 +111,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
     private void isCurrentDirectory(Path destinationFile, Path rootLocation) {
         if (!destinationFile.getParent()
-                            .equals(rootLocation.toAbsolutePath().resolve(folderName))) {
+                .equals(rootLocation.toAbsolutePath().resolve(folderName))) {
             throw new StorageException("[ERROR] 현재 디렉토리 바깥에 파일을 저장할 수 없습니다.");
         }
     }

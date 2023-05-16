@@ -3,6 +3,7 @@ package uplord.uplordapi.fileUpload.controller;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -36,11 +37,12 @@ public class FileUploadController {
         try {
             List<String> filesURL = fileUploadService
                     .loadAll()
-                    .map(path -> MvcUriComponentsBuilder
-                            .fromMethodName(FileUploadController.class,
-                                            "serveFile",
-                                            path.getFileName().toString())
-                            .build().toUri().toString())
+                    .map(path -> MvcUriComponentsBuilder.fromMethodName(
+                                    FileUploadController.class, "serveFile", path.getFileName().toString()
+                            )
+                            .build()
+                            .toUri()
+                            .toString())
                     .collect(Collectors.toList());
             return ResponseEntity.ok(filesURL);
         } catch (StorageException e) {
@@ -55,9 +57,9 @@ public class FileUploadController {
         try {
             Resource file = fileUploadService.loadAsResource(filename);
             return ResponseEntity.ok()
-                                 .header(HttpHeaders.CONTENT_DISPOSITION,
-                                         "attachment; filename=\"" + file.getFilename() + "\"")
-                                 .body(file);
+                    .header(HttpHeaders.CONTENT_DISPOSITION,
+                            "attachment; filename=\"" + file.getFilename() + "\"")
+                    .body(file);
         } catch (StorageFileNotFoundException e) {
             // todo: 로깅구현체로 로깅하기
             System.out.println(e.getMessage());
