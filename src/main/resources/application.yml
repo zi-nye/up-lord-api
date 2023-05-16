@@ -16,9 +16,9 @@ spring:
     ansi:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://133.186.215.128:3306/UP_LORD?characterEncoding=utf8&serverTimezone=UTC&allowMultiQueries=true
-    username: root
-    password: h%7t*Feg&%
+    url: jdbc:mysql://up-lord-api-rdb.cwifxe2gw1lg.ap-northeast-2.rds.amazonaws.com:3306/UP_LORD?characterEncoding=utf8&serverTimezone=UTC&allowMultiQueries=true
+    username: uplord
+    password: uplord-api
   mvc:
     # spring fox 3.0부터 엑츄에이터 때문에? ant_path_matcher를 사용해야 한다네요
     # 참고 링크
