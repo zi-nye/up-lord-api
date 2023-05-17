@@ -16,3 +16,4 @@ hooks:
     - location: deploy.sh
       timeout: 60
       runas: ec2-user
+# 새로 배포됐는지 테스트
