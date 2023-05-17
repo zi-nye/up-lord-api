@@ -25,6 +25,8 @@ spring:
     # https://stackoverflow.com/questions/72465369/upgraded-spring-boot-to-2-7-0-failed-to-start-bean-documentationpluginsbootstr
     pathmatch:
       matching-strategy: ant_path_matcher
+  pid:
+    file: /home/ec2-user/app/up-lord-api.pid
 server:
   servlet:
     session:
@@ -61,4 +63,3 @@ jwt:
   header: "Authorization"
   secret-key: "ZINYECHUNGCHUNGDLQSLEKZINYECHUNGCHUNGDLQSLEK"
   token-validity-in-seconds: 1800000
-

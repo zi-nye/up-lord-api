@@ -3,6 +3,7 @@ package uplord.uplordapi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -19,7 +20,8 @@ import uplord.uplordapi.fileUpload.StorageProperties;
 public class UpLordApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(UpLordApiApplication.class, args);
+        SpringApplication application = new SpringApplication(UpLordApiApplication.class);
+        application.addListeners(new ApplicationPidFileWriter());
+        application.run(args);
     }
-
 }
