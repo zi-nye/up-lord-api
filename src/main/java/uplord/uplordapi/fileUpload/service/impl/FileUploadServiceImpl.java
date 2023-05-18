@@ -27,7 +27,8 @@ public class FileUploadServiceImpl implements FileUploadService {
 
     @Autowired
     public FileUploadServiceImpl(StorageProperties properties) {
-        this.rootLocation = Paths.get(properties.getLocation());
+        this.rootLocation = Paths.get(properties.getLocation())
+                        .getParent();
         init();
     }
 
