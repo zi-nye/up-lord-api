@@ -1,6 +1,9 @@
 spring:
-  profiles:
-    active: local
+  config:
+    activate:
+      on-profile:
+        - real-db
+        - oauth
   devtools:
     livereload:
       enabled: false
@@ -14,11 +17,6 @@ spring:
     encoding: UTF-8
   output:
     ansi:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://up-lord-api-rdb.cwifxe2gw1lg.ap-northeast-2.rds.amazonaws.com:3306/UP_LORD?characterEncoding=utf8&serverTimezone=UTC&allowMultiQueries=true
-    username: uplord
-    password: uplordapi
   mvc:
     # spring fox 3.0부터 엑츄에이터 때문에? ant_path_matcher를 사용해야 한다네요
     # 참고 링크
@@ -54,12 +52,3 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
     jdbc-type-for-null: varchar
-
-kakao:
-  rest-api-key: "d8ffee0aed78643ac7c0644a387c1e2e"
-  redirect-url: "http://localhost:3000/oauth"
-
-jwt:
-  header: "Authorization"
-  secret-key: "ZINYECHUNGCHUNGDLQSLEKZINYECHUNGCHUNGDLQSLEK"
-  token-validity-in-seconds: 1800000
