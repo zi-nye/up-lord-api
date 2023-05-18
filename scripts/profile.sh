@@ -22,8 +22,8 @@ function find_idle_port() {
   IDLE_PROFILE=$(find_idle_profile)
 
   if [ ${IDLE_PROFILE} == real1 ]; then
-    echo "사용하지 않는 프로필인 ${IDLE_PROFILE}에 세팅된 포트번호 8081"
+    echo "8081"
   else
-    echo "사용하지 않는 프로필인 ${IDLE_PROFILE}에 세팅된 포트번호 8082"
+    echo "8082"
   fi
 }
