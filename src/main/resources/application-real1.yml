@@ -24,7 +24,7 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
   pid:
-    file: /home/ec2-user/app/up-lord-api.pid
+    file: /home/ec2-user/app/Up-Lord-API-0.0.1-SNAPSHOT.pid
 server:
   port: 8081
   servlet:
