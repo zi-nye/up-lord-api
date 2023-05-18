@@ -35,11 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         web.ignoring()
-           .antMatchers("/sysManage/userManage")
-           .antMatchers("/files/**")
-           .antMatchers("/event/birthday/**")
-           .antMatchers("/v2/api-docs", "/swagger-resources/**",
-                        "/swagger-ui/**", "/webjars/**", "/swagger/**");
+                .antMatchers("/sysManage/userManage")
+                .antMatchers("/files/**")
+                .antMatchers("/event/birthday/**")
+                .antMatchers("/v2/api-docs", "/swagger-resources/**",
+                        "/swagger-ui/**", "/webjars/**", "/swagger/**")
+                .antMatchers("/profile");
     }
 
     @Override
