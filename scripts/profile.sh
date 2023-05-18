@@ -15,7 +15,7 @@ function find_idle_profile() {
     IDLE_PROFILE=real1
   fi
 
-  echo "NGINX 와 연결되지 않은 프로필 : ${IDLE_PROFILE}"
+  echo ${IDLE_PROFILE}"
 }
 
 function find_idle_port() {
