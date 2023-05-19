@@ -41,6 +41,7 @@ public class FileUploadServiceImpl implements FileUploadService {
                     .normalize()
                     .toAbsolutePath();
             // todo : 로깅구현체로 바꾸기
+            System.out.println("CI/CD테스트용 로깅입니다.");
             System.out.println("다음 경로에 업로드를 진행합니다. : " + destinationFile);
             isCurrentDirectory(destinationFile, this.rootLocation);
             copyDestinationFileIntoStorage(file, destinationFile);
