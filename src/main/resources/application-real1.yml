@@ -54,4 +54,4 @@ mybatis:
     jdbc-type-for-null: varchar
 
 storage:
-  location: /home/ec2-user/app
+  location: /home/ec2-user
