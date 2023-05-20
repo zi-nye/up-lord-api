@@ -8,7 +8,7 @@
         AND ATTENDANCE_DATE = #{attendanceDate}
     </update>
 
-    <select id="findAttendanceByRequestDto" parameterType="AttendanceDto" resultType="AttendanceResponseDto">
+    <select id="attendanceDate" parameterType="LocalDate" resultType="AttendanceResponseDto">
         SELECT
              A.ATTENDANCE_ID
              , A.MEMBER_IDX

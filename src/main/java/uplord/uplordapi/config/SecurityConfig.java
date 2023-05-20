@@ -40,7 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/event/birthday/**")
                 .antMatchers("/v2/api-docs", "/swagger-resources/**",
                         "/swagger-ui/**", "/webjars/**", "/swagger/**")
-                .antMatchers("/profile");
+                .antMatchers("/profile")
+                .antMatchers("/attendance/**");
     }
 
     @Override

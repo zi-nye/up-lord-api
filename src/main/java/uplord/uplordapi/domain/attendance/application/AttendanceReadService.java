@@ -7,9 +7,8 @@ import uplord.uplordapi.domain.attendance.dto.AttendanceDto;
 import uplord.uplordapi.domain.attendance.dto.AttendanceResponseDto;
 import uplord.uplordapi.domain.attendance.entity.Attendance;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,9 +26,7 @@ public class AttendanceReadService {
                 .build();
     }
 
-    public List<AttendanceResponseDto> findAttendanceByRequestDto(AttendanceDto attendanceDto) {
-        var attendances = attendanceDao.findAttendanceByRequestDto(attendanceDto);
-
-        return attendances;
+    public List<AttendanceResponseDto> findAttendance(LocalDate attendanceDate) {
+        return attendanceDao.findAttendance(attendanceDate);
     }
 }

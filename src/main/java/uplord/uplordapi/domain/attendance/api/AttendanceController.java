@@ -3,16 +3,17 @@ package uplord.uplordapi.domain.attendance.api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uplord.uplordapi.common.model.CommonResponse;
-import uplord.uplordapi.common.model.ErrorResponse;
 import uplord.uplordapi.domain.attendance.application.AttendanceReadService;
 import uplord.uplordapi.domain.attendance.application.AttendanceWriteService;
 import uplord.uplordapi.domain.attendance.dto.AttendanceDto;
 import uplord.uplordapi.domain.attendance.dto.AttendanceResponseDto;
 import uplord.uplordapi.domain.attendance.dto.RegisterAttendanceCommand;
 
+import java.time.LocalDate;
 import java.util.List;
 
 // DDD 도메인 주도 계발의 패키지 구조로 domain 안에 여러 도메인들 패키지가 있고
@@ -30,8 +31,8 @@ public class AttendanceController {
 
     @Operation(summary = "출석 조회")
     @GetMapping("")
-    public ResponseEntity<List<AttendanceResponseDto>> getAttendances(@RequestBody AttendanceDto requestDto) {
-        return ResponseEntity.ok(attendanceReadService.findAttendanceByRequestDto(requestDto));
+    public ResponseEntity<List<AttendanceResponseDto>> getAttendances(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate attendanceDate) {
+        return ResponseEntity.ok(attendanceReadService.findAttendance(attendanceDate));
     }
 
     @Operation(summary = "출석부 등록")
