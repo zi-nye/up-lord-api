@@ -7,9 +7,6 @@ source ${ABSDIR}/profile.sh
 REPOSITORY=/home/ec2-user/app
 PROJECT_NAME=Up-Lord-API-0.0.1-SNAPSHOT
 
-echo "> 배포 폴더의 권한을 766으로 변경합니다."
-chmod 766 $REPOSITORY
-
 echo "> Build 파일 복사"
 echo "> cp $REPOSITORY/zip/*.jar $REPOSITORY/"
 cp $REPOSITORY/zip/*.jar $REPOSITORY/
@@ -18,8 +15,6 @@ echo "> 새 애플리케이션을 배포합니다."
 JAR_NAME=$(ls -tr $REPOSITORY/*.jar | tail -n 1)
 
 echo "> JAR Name : $JAR_NAME"
-echo "> JAR_NAME 에 실행권한 추가"
-chmod 777 $JAR_NAME
 
 echo "> $JAR_NAME 실행합니다."
 IDLE_PROFILE=$(find_idle_profile)

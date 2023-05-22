@@ -12,7 +12,7 @@ IDLE_PID=$(lsof -ti tcp:${IDLE_PORT})
 if [ -z ${IDLE_PID} ]; then
   echo "> 조회결과 PID가 0입니다. 현재 구동 중인 애플리케이션이 없으므로 종료하지 않습니다."
 else
-  echo "> 조회결과 PID가 ${IDLE_PID}입니다. kill -15 ${IDLE_PID}를 수행합니다."
+  echo "> kill -15 $IDLE_PID"
   kill -15 ${IDLE_PID}
   sleep 5
 fi

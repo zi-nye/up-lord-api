@@ -19,6 +19,7 @@ public class RegisterAttendanceCommand {
     final private Integer updatedUid;
     final private LocalDateTime updatedAt;
     final private String updatedIp;
+
     @Builder
     public RegisterAttendanceCommand(LocalDate attendanceDate, Long memberIdx, String memo, Character attendanceYn, Integer createdUid, LocalDateTime createdAt, String createdIp, Integer updatedUid, LocalDateTime updatedAt, String updatedIp) {
         this.attendanceDate = attendanceDate;

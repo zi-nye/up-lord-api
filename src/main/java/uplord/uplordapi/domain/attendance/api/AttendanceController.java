@@ -1,5 +1,8 @@
 package uplord.uplordapi.domain.attendance.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +15,7 @@ import uplord.uplordapi.domain.attendance.application.AttendanceWriteService;
 import uplord.uplordapi.domain.attendance.dto.AttendanceDto;
 import uplord.uplordapi.domain.attendance.dto.AttendanceResponseDto;
 import uplord.uplordapi.domain.attendance.dto.RegisterAttendanceCommand;
+import uplord.uplordapi.domain.attendance.exception.RegisterDupException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -37,8 +41,17 @@ public class AttendanceController {
 
     @Operation(summary = "출석부 등록")
     @PostMapping("")
-    public ResponseEntity<List<AttendanceDto>> register(@RequestBody RegisterAttendanceCommand requestDto) {
-        return ResponseEntity.ok(attendanceWriteService.registerAttendance(requestDto));
+    public ResponseEntity<String> register(@RequestBody RegisterAttendanceCommand requestDto) {
+        try {
+            List<AttendanceDto> list = attendanceWriteService.registerAttendance(requestDto);
+            ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
+            return ResponseEntity.ok(objectMapper.writeValueAsString(list));
+        } catch (RegisterDupException e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().body("[ERROR] 출석부가 중복 될 수 없습니다.");
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Operation(summary = "출석 하기")
