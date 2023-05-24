@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uplord.uplordapi.board.meeting.dao.PostsApiDao">
+    <insert id="save" parameterType="PostsSaveRequestDto">
+        INSERT INTO MEETING_BOARD(USER_ID,
+                                  TITLE,
+                                  CONTENT,
+                                  VIEWS,
+                                  CREATED_AT,
+                                  CREATED_IP,
+                                  UPDATED_AT,
+                                  UPDATED_IP)
+        VALUES ( #{userId}
+               , #{title}
+               , #{content}
+               , #{views}
+               , #{createdAt}
+               , #{createdIp}
+               , #{updatedAt}
+               , #{updatedIp})
+    </insert>
+</mapper>
