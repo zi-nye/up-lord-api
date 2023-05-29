@@ -8,35 +8,37 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
-public class PostsSaveRequestDto {
-    private Long userId;
+public class PostsDto {
+    private Long postId;
+    private String userName;
+    private String userEmail;
     private String title;
     private String content;
+    private Long views;
     private LocalDateTime createdAt;
-    private String createdIp;
     private LocalDateTime updatedAt;
-    private String updatedIp;
 
     @Builder
-    public PostsSaveRequestDto(Long userId, String title, String content, LocalDateTime createdAt, String createdIp, LocalDateTime updatedAt, String updatedIp) {
-        this.userId = userId;
+    public PostsDto(Long postId, String userName, String userEmail, String title, String content, Long views, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.postId = postId;
+        this.userName = userName;
+        this.userEmail = userEmail;
         this.title = title;
         this.content = content;
+        this.views = views;
         this.createdAt = createdAt;
-        this.createdIp = createdIp;
         this.updatedAt = updatedAt;
-        this.updatedIp = updatedIp;
     }
 
-    public PostsSaveRequestDto toEntity() {
-        return PostsSaveRequestDto.builder()
-                .userId(userId)
+    public PostsDto toEntity() {
+        return PostsDto.builder()
+                .userName(userName)
+                .userEmail(userEmail)
                 .title(title)
                 .content(content)
+                .views(views)
                 .createdAt(createdAt)
-                .createdIp(createdIp)
                 .updatedAt(updatedAt)
-                .updatedIp(updatedIp)
                 .build();
     }
 }

@@ -7,16 +7,46 @@
                                   CONTENT,
                                   VIEWS,
                                   CREATED_AT,
-                                  CREATED_IP,
-                                  UPDATED_AT,
-                                  UPDATED_IP)
+                                  CREATED_IP)
         VALUES ( #{userId}
                , #{title}
                , #{content}
                , #{views}
                , #{createdAt}
-               , #{createdIp}
-               , #{updatedAt}
-               , #{updatedIp})
+               , #{createdIp})
     </insert>
+
+    <update id="update" parameterType="PostsUpdateDto">
+        UPDATE MEETING_BOARD
+        SET TITLE      = #{title},
+            CONTENT    = #{content},
+            UPDATED_AT = #{updatedAt},
+            UPDATED_IP = #{updatedIp}
+        WHERE POST_ID = #{postId}
+    </update>
+
+    <select id="findById" resultType="PostsDto">
+        SELECT A.POST_ID,
+               B.USER_NAME,
+               B.USER_EMAIL,
+               A.TITLE,
+               A.CONTENT,
+               A.VIEWS,
+               A.CREATED_AT,
+               A.UPDATED_AT
+        FROM MEETING_BOARD AS A
+        JOIN USER AS B ON A.USER_ID = B.USER_ID
+        WHERE A.POST_ID = #{postId}
+    </select>
+
+    <select id="findAll" resultType="AllPostsDto">
+        SELECT A.POST_ID,
+               B.USER_NAME,
+               A.TITLE,
+               A.VIEWS,
+               A.CREATED_AT
+        FROM MEETING_BOARD AS A
+        JOIN USER AS B
+        ON A.USER_ID = B.USER_ID
+    </select>
 </mapper>
