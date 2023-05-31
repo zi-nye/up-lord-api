@@ -21,7 +21,7 @@ class WebConfig implements WebMvcConfigurer {
                         HttpMethod.PUT.name(),
                         HttpMethod.DELETE.name())
                 .allowedHeaders("*")
-                .allowedOrigins("https://zi-nye.github.io/")
+                .allowedOrigins("https://zi-nye.github.io")
                 .allowCredentials(true);
     }
 }
